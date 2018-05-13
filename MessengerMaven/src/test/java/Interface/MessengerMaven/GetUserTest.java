@@ -3,6 +3,8 @@ package Interface.MessengerMaven;
 import org.junit.Assert;
 import org.junit.Test;
 
+import Implementation.MessengerMaven.GetUserImpl;
+
 /**
  * Unit test for simple App.
  */

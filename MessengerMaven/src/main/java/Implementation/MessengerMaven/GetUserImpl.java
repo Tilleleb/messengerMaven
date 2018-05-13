@@ -1,4 +1,6 @@
-package Interface.MessengerMaven;
+package Implementation.MessengerMaven;
+
+import Interface.MessengerMaven.GetUser;
 
 public class GetUserImpl implements GetUser {
 
