@@ -4,9 +4,9 @@ import Interface.MessengerMaven.ManageContactList;
 
 public class ManageContactListImpl implements ManageContactList {
 
-	public boolean addContact(int userid, int contactid) {
+	public boolean addContact(int userid, String contactname) {
 		// TODO Auto-generated method stub
-		if (userid == 1 && contactid == 2)
+		if (userid == 1 && contactname == "user2")
 			return true;
 		return false;
 	}

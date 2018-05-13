@@ -8,7 +8,7 @@ public interface ManageContactList {
 	 * @param contactid		id of the contact (a contact is also a user)
 	 * @return				true: the contact was added
 	 */
-	public boolean addContact(int userid, int contactid);
+	public boolean addContact(int userid, String contactname);
 	
 	/**
 	 * contact a user from a users contact list
@@ -24,10 +24,5 @@ public interface ManageContactList {
 	 * @return			int-array with all the contact-ids belonging to the contacts of the user
 	 */
 	public int[] getContactList(int userid);
-	
-	/*-----------------------???????????????????????----------------------------*/
-	//public Contact getContact(String Username);//?
-	/*-----------------------???????????????????????----------------------------*/
-	
 	
 }
