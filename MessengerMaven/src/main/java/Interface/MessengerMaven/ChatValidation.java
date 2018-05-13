@@ -7,7 +7,7 @@ public interface ChatValidation {
 	 * @param id of the chat
 	 * @return true: chat exists; false: chat doesn't exist
 	 */
-	public boolean chatIfChatExists(int chat_id);
+	public boolean checkIfChatExists(int chat_id);
 	
 
 }

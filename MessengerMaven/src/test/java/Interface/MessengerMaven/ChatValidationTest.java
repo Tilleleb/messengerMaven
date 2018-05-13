@@ -27,10 +27,10 @@ public class ChatValidationTest {
 	}
 		
 	public void testForTrue(int testValue) {
-		Assert.assertTrue(service.chatIfChatExists(testValue));
+		Assert.assertTrue(service.checkIfChatExists(testValue));
 	}
 	
 	public void testForFalse(int testValue) {
-		Assert.assertFalse(service.chatIfChatExists(testValue));
+		Assert.assertFalse(service.checkIfChatExists(testValue));
 	}
 }
