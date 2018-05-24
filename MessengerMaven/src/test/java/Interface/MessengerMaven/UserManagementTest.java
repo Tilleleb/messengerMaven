@@ -13,6 +13,7 @@ public class UserManagementTest {
 	@Test
 	public void testOkAddUser() {
 		Assert.assertEquals(0,service.addUser("user0", "password0"));
+		
 	}
 	
 	@Test
