@@ -1,6 +1,7 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import Implementation.MessengerMaven.ChatValidationImpl;
 
@@ -9,7 +10,12 @@ import Implementation.MessengerMaven.ChatValidationImpl;
  */
 public class ChatValidationTest {
 
-	ChatValidation service = new ChatValidationImpl();
+	static ChatValidation service;
+	
+    @BeforeClass
+    public static void initialize() {
+    	service =  new ChatValidationImpl();
+     }
 
 	@Test
 	public void testIsZero() {

@@ -1,12 +1,20 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
 import Implementation.MessengerMaven.ManageChatGroupsImpl;
 
 public class ManageChatGroupsTest {
 
-	ManageChatGroups service = new ManageChatGroupsImpl();
+	static ManageChatGroups service;
+	
+    @BeforeClass
+    public static void initialize() {
+    	service = new ManageChatGroupsImpl();
+     }
+
 
 	//Test addConversation
 	//public boolean addConversation(String name, byte[] picture)

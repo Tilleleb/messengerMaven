@@ -1,12 +1,19 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import Implementation.MessengerMaven.CommunicationImpl;
 
 public class CommunicationTest {
 
-	Communication service = new CommunicationImpl();
+	static Communication service;
+	
+    @BeforeClass
+    public static void initialize() {
+    	service = new CommunicationImpl();
+     }
+
 	
 	// Tests for send message
 	// --------------------------------------------------------------

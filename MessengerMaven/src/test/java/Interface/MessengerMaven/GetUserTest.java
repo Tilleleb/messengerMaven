@@ -1,6 +1,7 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Implementation.MessengerMaven.GetUserImpl;
@@ -10,8 +11,12 @@ import Implementation.MessengerMaven.GetUserImpl;
  */
 public class GetUserTest {
 
-	GetUser service = new GetUserImpl();
+	static GetUser service;
 
+    @BeforeClass
+    public static void initialize() {
+    	service = new GetUserImpl(); 
+     }
 
 	
 	@Test

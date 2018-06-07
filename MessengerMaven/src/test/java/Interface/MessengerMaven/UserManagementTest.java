@@ -1,12 +1,19 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import Implementation.MessengerMaven.UserManagementImpl;
 
 public class UserManagementTest {
 
-	UserManagement service = new UserManagementImpl();
+	static UserManagement service;
+	
+    @BeforeClass
+    public static void initialize() {
+    	service = new UserManagementImpl();
+     }
+
 
 	// Test addUser
 	
