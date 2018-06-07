@@ -1,16 +1,16 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import Implementation.MessengerMaven.ManageContactListImpl;
 
 public class ManageContactListTest {
 
-	static ManageContactList service;
+	ManageContactList service;
 	
-    @BeforeClass
-    public static void initialize() {
+    @Before
+    public void initialize() {
     	service = new ManageContactListImpl();
      }
 

@@ -1,16 +1,16 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import Implementation.MessengerMaven.UserValidationImpl;
 
 public class UserValidationTest {
 
-	static UserValidation service;
+	UserValidation service;
 	
-    @BeforeClass
-    public static void initialize() {
+    @Before
+    public void initialize() {
     	service = new UserValidationImpl();
      }
 
