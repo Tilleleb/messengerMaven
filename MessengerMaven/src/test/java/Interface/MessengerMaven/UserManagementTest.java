@@ -1,16 +1,16 @@
 package Interface.MessengerMaven;
 
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import Implementation.MessengerMaven.UserManagementImpl;
 
 public class UserManagementTest {
 
-	static UserManagement service;
+	UserManagement service;
 	
-    @BeforeClass
-    public static void initialize() {
+    @Before
+    public void initialize() {
     	service = new UserManagementImpl();
      }
 
@@ -19,12 +19,12 @@ public class UserManagementTest {
 	
 	@Test
 	public void testOkAddUser() {
-		Assert.assertEquals(0,service.addUser("user0", "password0"));
-		
+		Assert.assertEquals(0,service.addUser("user1", "password1"));
 	}
 	
 	@Test
 	public void testAlreadyExistAddUser() {
+		service.addUser("user1", "password1");
 		Assert.assertEquals(1,service.addUser("user1", "password1"));
 	}
 	
@@ -37,6 +37,7 @@ public class UserManagementTest {
 	
 	@Test
 	public void testOkDeleteUser() {
+		service.addUser("user1", "password1");
 		Assert.assertTrue(service.deleteUser(1));
 	}
 	
@@ -50,26 +51,31 @@ public class UserManagementTest {
 
 	@Test
 	public void testOkUpdateUser() {
+		service.addUser("user1", "password1");
 		Assert.assertTrue(service.updateUser(1, "user1", "password1"));
 	}
 	
 	@Test
 	public void testWrongUserUpdateUser() {
+		service.addUser("user1", "password1");
 		Assert.assertFalse(service.updateUser(0, "user1", "password1"));
 	}
 	
 	@Test
 	public void testEmptyPwUpdateUser() {
+		service.addUser("user1", "password1");
 		Assert.assertFalse(service.updateUser(1, "user1", ""));
 	}
 	
 	@Test
 	public void testEmptyUsernameUpdateUser() {
+		service.addUser("user1", "password1");
 		Assert.assertFalse(service.updateUser(1, "", "password1"));
 	}
 	
 	@Test
 	public void testWrongSignsUpdateUser() {
+		service.addUser("user1", "password1");
 		Assert.assertFalse(service.updateUser(1, "user1%", "password1"));
 	}
 	
@@ -79,11 +85,13 @@ public class UserManagementTest {
 	
 	@Test
 	public void testOkLoginUser() {
+		service.addUser("user1", "password1");
 		Assert.assertEquals(1, service.loginUser("user1", "password1"));
 	}
 	
 	@Test
 	public void testNoMatchLoginUser() {
+		service.addUser("user1", "password1");
 		Assert.assertEquals(0, service.loginUser("user0", "password0"));
 	}
 	
