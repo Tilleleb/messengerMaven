@@ -17,7 +17,7 @@
 				value="Username"/>
 			<p:inputText 
 				id="username"
-				value="#{signinController.customer.username}"
+				value="#{signinController.user.username}"
 				required="true"
 				label="Username">
 				<!-- Eingabevalidierung -->
@@ -34,7 +34,7 @@
 				value="Kennwort"/>
 			<p:password 
 				id="password"
-				value="#{signinController.customer.password}"
+				value="#{signinController.user.password}"
 				required="true"
 				label="Kennwort">
 				<!-- Eingabevalidierung -->
@@ -69,14 +69,14 @@
 			value="Username"/>
 			<p:outputLabel 
 			id="ausgabe1"
-			value="#{signinController.customer.username}"/>
+			value="#{signinController.user.username}"/>
 			
 			<p:outputLabel 
 			for="ausgabe2"
 			value="Kennwort"/>
 			<p:outputLabel 
 			id="ausgabe2"
-			value="#{signinController.customer.password}"/>
+			value="#{signinController.user.password}"/>
 			<p:outputLabel value="#{signinController.signedIn}"/>
 		</p:panelGrid>
 

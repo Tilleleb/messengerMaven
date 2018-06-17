@@ -11,16 +11,17 @@
 		<title>Primefaces</title>
 	</h:head>
 	<script type="text/javascript">
-        //setInterval("updateMessages()", 2000); //update the chart every 200 ms               
-         
-        function updateMessages() {
-            //if(!args.ok) return;
-            $('#chat').append($('#chat').append('<div class="msg">Test</div>'));
-            window.location.hash = '#bottomDiv';
-            $('.ui-layout-center').animate({scrollTop:$(document).height()}, 'slow');
-        }
-         
-    </script>
+		//setInterval("updateMessages()", 2000); //update the chart every 200 ms               
+
+		function updateMessages() {
+			//if(!args.ok) return;
+			$('#chat').append($('#chat').append('<div class="msg">Test</div>'));
+			window.location.hash = '#bottomDiv';
+			$('.ui-layout-center').animate({
+				scrollTop : $(document).height()
+			}, 'slow');
+		}
+	</script>
 	<h:body>
 		<p:layout fullPage="true">
 
@@ -28,17 +29,14 @@
 
 				<h:form>
 					<p:menubar>
-						<p:submenu label="Chat" icon="ui-icon-document">
-							<p:submenu label="New" icon="ui-icon-contact">
-								<p:menuitem value="Einzelchat" url="#" />
-								<p:menuitem value="Gruppenchat" url="#" />
-							</p:submenu>
-						</p:submenu>
-						<p:menuitem value="Kontakte" url="contacts.xhtml" icon="ui-icon-person" />
+						<p:menuitem value="Chat hinzufügen" url="addChat.xhtml"
+							icon="ui-icon-person" />
+						<p:menuitem value="Kontakte" url="contacts.xhtml"
+							icon="ui-icon-person" />
 						<f:facet name="options">
 							<p:commandButton
-								value="Logout #{signinController.customer.username} "
-								update="@all" process="@this" icon="ui-icon-extlink"
+								value="Logout #{signinController.user.username} " update="@all"
+								process="@this" icon="ui-icon-extlink"
 								action="#{signinController.signout}">
 								<p:resetInput target="@form" />
 							</p:commandButton>
@@ -51,7 +49,7 @@
 				<h:form id="sendMessage">
 					<p:panelGrid columns="2">
 						<p:inputText id="messageInput" label="Message Input" size="50" />
-						<p:commandButton value="Senden" onclick="updateMessages();" />
+						<p:commandButton value="Senden" onclick="updateMessages();" action="signinController.user.chat.addMessage"/>
 					</p:panelGrid>
 				</h:form>
 			</p:layoutUnit>
@@ -61,17 +59,23 @@
 				<h:form>
 					<p:menuButton value="Chatgroup Work">
 						<p:menuitem value="Open Chat" icon="ui-icon-disk" />
-						<p:menuitem value="Edit Chatgroup" icon="ui-icon-arrowrefresh-1-w" />
+						<p:menuitem value="Edit Chatgroup" url="editChat.xhtml"
+							icon="ui-icon-arrowrefresh-1-w" />
 						<p:menuitem value="Delete Chatgroup" icon="ui-icon-close" />
 					</p:menuButton>
 				</h:form>
 			</p:layoutUnit>
-			<p:layoutUnit position="center" header="Chat Test" z-index="40">
+			<p:layoutUnit position="center" header="Chat Test">
 				<h:form>
-					<p:remoteCommand name="nextMessage"
-						onclick="updateMessages(xhr, status, args);" />
 					<div id="chat"></div>
 					<div id="bottomDiv"></div>
+					<h:dataTable value="#{signinController.user.chat}" var="message">
+						<h:column>
+							<h:link value="#{message.text}" outcome="message">
+								<f:param name="id" value="#{message.timestamp}" />
+							</h:link>
+						</h:column>
+					</h:dataTable>
 				</h:form>
 			</p:layoutUnit>
 		</p:layout>

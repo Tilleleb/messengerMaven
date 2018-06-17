@@ -8,7 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import messenger.View.model.Customer;
+import messenger.View.model.User;
 
 @Named
 @SessionScoped
@@ -16,16 +16,16 @@ public class SigninController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private Customer customer;
+	private User user;
 	
 	private String signedIn;
 
-	public Customer getCustomer() {
-		return customer;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	public String getSignedIn() {
@@ -51,11 +51,11 @@ public class SigninController implements Serializable {
 	
 	public String find() {
 		if(
-				customer != null &&
-				customer.getUsername() != null &&
-				customer.getPassword() != null &&
-				customer.getUsername().equals("admin") &&
-				customer.getPassword().equals("admin")){
+				user != null &&
+				user.getUsername() != null &&
+				user.getPassword() != null &&
+				user.getUsername().equals("admin") &&
+				user.getPassword().equals("admin")){
 			
 			/*FacesMessage m = 
 					new FacesMessage(
