@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+	<h:head>
+		<meta http-equiv="Content-Type"
+			content="text/html; charset=ISO-8859-1" />
+		<title>Primefaces</title>
+	</h:head>
+	<script type="text/javascript">
+        //setInterval("updateMessages()", 2000); //update the chart every 200 ms               
+         
+        function updateMessages() {
+            //if(!args.ok) return;
+            $('#chat').append($('#chat').append('<div class="msg">Test</div>'));
+            window.location.hash = '#bottomDiv';
+            $('.ui-layout-center').animate({scrollTop:$(document).height()}, 'slow');
+        }
+         
+    </script>
+	<h:body>
+		<p:layout fullPage="true">
+
+			<p:layoutUnit position="north">
+
+				<h:form>
+					<p:menubar>
+						<p:submenu label="Chat" icon="ui-icon-document">
+							<p:submenu label="New" icon="ui-icon-contact">
+								<p:menuitem value="Einzelchat" url="#" />
+								<p:menuitem value="Gruppenchat" url="#" />
+							</p:submenu>
+						</p:submenu>
+						<p:menuitem value="Kontakte" url="contacts.xhtml" icon="ui-icon-person" />
+						<f:facet name="options">
+							<p:commandButton
+								value="Logout #{signinController.customer.username} "
+								update="@all" process="@this" icon="ui-icon-extlink"
+								action="#{signinController.signout}">
+								<p:resetInput target="@form" />
+							</p:commandButton>
+						</f:facet>
+					</p:menubar>
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="south" collapsible="true">
+				<h:form id="sendMessage">
+					<p:panelGrid columns="2">
+						<p:inputText id="messageInput" label="Message Input" size="50" />
+						<p:commandButton value="Senden" onclick="updateMessages();" />
+					</p:panelGrid>
+				</h:form>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="west" size="200" header="Chats"
+				collapsible="true">
+				<h:form>
+					<p:menuButton value="Chatgroup Work">
+						<p:menuitem value="Open Chat" icon="ui-icon-disk" />
+						<p:menuitem value="Edit Chatgroup" icon="ui-icon-arrowrefresh-1-w" />
+						<p:menuitem value="Delete Chatgroup" icon="ui-icon-close" />
+					</p:menuButton>
+				</h:form>
+			</p:layoutUnit>
+			<p:layoutUnit position="center" header="Chat Test" z-index="40">
+				<h:form>
+					<p:remoteCommand name="nextMessage"
+						onclick="updateMessages(xhr, status, args);" />
+					<div id="chat"></div>
+					<div id="bottomDiv"></div>
+				</h:form>
+			</p:layoutUnit>
+		</p:layout>
+	</h:body>
+</f:view>
+</html>
