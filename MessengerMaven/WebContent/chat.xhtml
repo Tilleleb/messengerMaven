@@ -15,11 +15,11 @@
 
 		function updateMessages() {
 			//if(!args.ok) return;
-			$('#chat').append($('#chat').append('<div class="msg">Test</div>'));
+			/*$('#chat').append($('#chat').append('<div class="msg">Test</div>'));*/
 			window.location.hash = '#bottomDiv';
-			$('.ui-layout-center').animate({
+			/*$('.ui-layout-center').animate({
 				scrollTop : $(document).height()
-			}, 'slow');
+			}, 'slow');*/
 		}
 	</script>
 	<h:body>
@@ -29,10 +29,7 @@
 
 				<h:form>
 					<p:menubar>
-						<p:menuitem value="Chat hinzufügen" url="addChat.xhtml"
-							icon="ui-icon-person" />
-						<p:menuitem value="Kontakte" url="contacts.xhtml"
-							icon="ui-icon-person" />
+						<p:menuitem value="Zurück" url="chats.xhtml" icon="ui-icon-person" />
 						<f:facet name="options">
 							<p:commandButton
 								value="Logout #{signinController.user.username} " update="@all"
@@ -49,34 +46,16 @@
 				<h:form id="sendMessage">
 					<p:panelGrid columns="2">
 						<p:inputText id="messageInput" label="Message Input" size="50" />
-						<p:commandButton value="Senden" onclick="updateMessages();" action="signinController.user.chat.addMessage"/>
+						<p:commandButton value="Senden" onclick="updateMessages();"
+							action="#{signinController.user.addMessage(param['sendMessage:messageInput'])}"
+							update="@all" resetValues="true" />
 					</p:panelGrid>
 				</h:form>
 			</p:layoutUnit>
 
-			<p:layoutUnit position="west" size="200" header="Chats"
-				collapsible="true">
-				<h:form>
-					<p:menuButton value="Chatgroup Work">
-						<p:menuitem value="Open Chat" icon="ui-icon-disk" />
-						<p:menuitem value="Edit Chatgroup" url="editChat.xhtml"
-							icon="ui-icon-arrowrefresh-1-w" />
-						<p:menuitem value="Delete Chatgroup" icon="ui-icon-close" />
-					</p:menuButton>
-				</h:form>
-			</p:layoutUnit>
-			<p:layoutUnit position="center" header="Chat Test">
-				<h:form>
-					<div id="chat"></div>
-					<div id="bottomDiv"></div>
-					<h:dataTable value="#{signinController.user.chat}" var="message">
-						<h:column>
-							<h:link value="#{message.text}" outcome="message">
-								<f:param name="id" value="#{message.timestamp}" />
-							</h:link>
-						</h:column>
-					</h:dataTable>
-				</h:form>
+
+			<p:layoutUnit position="center" header="Chat Test"> 
+				<div id="bottomDiv"></div>
 			</p:layoutUnit>
 		</p:layout>
 	</h:body>

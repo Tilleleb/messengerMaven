@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15292460463680" configfile="/MessengerMaven/WebContent/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15292460463680" configfile="/MessengerMaven/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="chatList.xhtml" id="pf15294108968323" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" outlinks="pf15294108968324 pf15294110315366" inlinks="pf152941213084512" path="/chatList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="addChat.xhtml" x="249" y="96" id="pf15294108968325" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf15294108968324 pf15294110315366" path="/addChat.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="chaList.xhtml" x="12" y="132" id="pf15294115160587" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf15294115160588 pf152941213084512" inlinks="pf152941171999110" path="/contactList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="addContact.xhtml" x="240" y="252" id="pf15294115160589" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf152941171999110" inlinks="pf15294115160588" path="/addContact.xhtml"/>
+  <links id="pf15294108968324" target="pf15294108968325" source="pf15294108968323" outcome="add" redirect="true"/>
+  <links id="pf15294110315366" target="pf15294108968325" source="pf15294108968323" outcome="showContact" redirect="true"/>
+  <links id="pf15294115160588" target="pf15294115160589" source="pf15294115160587" outcome="addContact" redirect="true"/>
+  <links id="pf152941171999110" target="pf15294115160587" source="pf15294115160589" outcome="cancel" redirect="true"/>
+  <links id="pf152941213084512" target="pf15294108968323" source="pf15294115160587" outcome="back" redirect="true"/>
+</pageflow:Pageflow>

@@ -13,6 +13,8 @@ import org.primefaces.model.menu.MenuModel;
 public class MenuView {
      
     private MenuModel model;
+    
+    
  
     @PostConstruct
     public void init() {
