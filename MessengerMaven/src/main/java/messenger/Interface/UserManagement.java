@@ -1,5 +1,8 @@
 package messenger.Interface;
 
+import java.util.AbstractMap;
+import java.util.List;
+
 public interface UserManagement {
 	
 	/**
@@ -38,5 +41,7 @@ public interface UserManagement {
 	 * 0 when credentials not found
 	 */
 	public int loginUser(String username, String password);
+	
+	public List<AbstractMap.SimpleEntry<Long,String>> getAllUsers();
 	
 }

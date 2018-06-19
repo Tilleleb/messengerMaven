@@ -16,13 +16,13 @@
 				style="margin-bottom:10px;">
 
 				<h:panelGrid columns="2" cellpadding="5">
-					<p:outputLabel for="nutzer" value="Nutzer: " />
-					<p:selectOneMenu id="nutzer" value="#{userBean.nutzer}"
-						style="width:150px" converter ="#{nutzerListConverter}" required="true">
+					<p:outputLabel for="user" value="User: " />
+					<p:selectOneMenu id="user" value="#{userBean.username}"
+						style="width:150px">
 						<f:selectItem itemLabel="Select User" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItems value="#{userBean.nutzerList}" var="nutzer"
-							itemLabel="#{nutzer.name}" itemValue="#{nutzer}" />
+						<f:selectItems value="#{userBean.userList}" var="user"
+							itemLabel="#{user}" itemValue="#{user}" />
 					</p:selectOneMenu>
 				</h:panelGrid>
 

@@ -1,5 +1,8 @@
 package messenger.Implementation;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.List;
+
 import messenger.Interface.UserManagement;
 
 public class UserManagementImpl implements UserManagement {
@@ -45,6 +48,12 @@ public class UserManagementImpl implements UserManagement {
 		// TODO Auto-generated method stub
 		if (this.username == username && this.password == password) return userid;
 		return 0;
+	}
+
+	@Override
+	public List<SimpleEntry<Long, String>> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

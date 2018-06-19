@@ -19,14 +19,13 @@ public class ChatBean {
 	@Autowired
     private FehlerService fehlerService;*/
 	
-	/*
     @Autowired
     private ManageChatGroups manageChatGroups;
     
     @Autowired
     private UserBean userBean;
-    */
     
+    private List<String> chatList;
     
    //private Projekt projekt = new Projekt();
     
@@ -34,13 +33,15 @@ public class ChatBean {
     private Chat chat = new Chat();
     
     private List<Projekt> projektList;
+    */
     
-    
-    /*@PostConstruct
+    @PostConstruct
     private void init() {
-        projektList = fehlerService.selectProjekteFromDb();
+    	chatList.add("ChatA");
+    	chatList.add("ChatB");
+        //projektList = fehlerService.selectProjekteFromDb();
         
-    }*/
+    }
     
 	/*
     private void init() {
