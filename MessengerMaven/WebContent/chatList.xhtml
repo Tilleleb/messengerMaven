@@ -19,20 +19,26 @@
 							 outcome="showContact" icon="ui-icon-circle-plus"  />
 
 			<p></p>
+			<p:messages id="errorMessages" style="color:red;margin:8px;" />
+			<p:panel header="Waehlen Sie einen Chat #{userBean.username}"
+				style="margin-bottom:10px;">
 
-			<p:dataTable value="#{projektBean.projektList}" var="p" border="1" cellpadding="10"
-				cellspacing="1">
-				<p:column>
-					<f:facet name="header">Chatname</f:facet>
-                    #{p.bezeichnung}
-                </p:column>
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel for="chat" value="chat: " />
+					<p:selectOneMenu id="chat" value="#{chatListBean.chat}"
+						style="width:150px">
+						<f:selectItem itemLabel="Select Chat" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{chatListBean.chatList}" var="chat"
+							itemLabel="#{chat}" itemValue="#{chat}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
 
-				<p:column>
-					<f:facet name="header">Aktion</f:facet>
-					<p:commandButton action="#{projektBean.showProjekt(p)}" id="oeffnen"
-									 icon="ui-icon-folder-open" title="oeffnen" />
-				</p:column>
-			</p:dataTable>
+				<p:separator />
+
+				<p:commandButton value="Chat öffnen" action="#{chatListBean.showChat}"
+					update="errorMessages" icon="ui-icon-check" />
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>

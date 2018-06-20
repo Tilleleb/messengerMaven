@@ -62,6 +62,32 @@
 	       <to-view-id>/chatList.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+	       <from-outcome>addUser</from-outcome>
+	       <to-view-id>/addUser.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	   <from-view-id>/addUser.xhtml</from-view-id>
+	   <navigation-case>
+	       <from-outcome>success</from-outcome>
+	       <to-view-id>/chooseUser.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+	       <from-outcome>cancel</from-outcome>
+	       <to-view-id>/chooseUser.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	   <from-view-id>/chatList.xhtml</from-view-id>
+	   <navigation-case>
+	       <from-outcome>success</from-outcome>
+	       <to-view-id>/showChat.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 
 </faces-config>

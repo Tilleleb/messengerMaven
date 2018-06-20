@@ -25,14 +25,14 @@
 						<p:panelGrid columns="2">
 							<p:inputText id="messageInput" label="Message Input" size="50" />
 							<p:commandButton value="Senden" onclick="updateMessages();"
-								action="#{signinController.user.addMessage(param['sendMessage:messageInput'])}"
+								action="#"
 								update="@all" resetValues="true" />
+								
 						</p:panelGrid>
 					</h:form>
 				</p:layoutUnit>
 
-
-				<p:layoutUnit position="center" header="Chat Test">
+				<p:layoutUnit position="center" header="Test #{chatListBean.chat}">
 					<div id="bottomDiv"></div>
 				</p:layoutUnit>
 			</p:layout>

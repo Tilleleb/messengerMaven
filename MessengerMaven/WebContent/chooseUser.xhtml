@@ -10,6 +10,7 @@
 	<ui:param name="title" value="BugTracker - Nutzer" />
 
 	<ui:define name="content">
+	<p:button value="User hinzufügen " id="contact" outcome="addUser" icon="ui-icon-circle-plus"  />
 		<h:form>
 			<p:messages id="errorMessages" style="color:red;margin:8px;" />
 			<p:panel header="Waehlen Sie einen Nutzer"
@@ -18,7 +19,7 @@
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel for="user" value="User: " />
 					<p:selectOneMenu id="user" value="#{userBean.username}"
-						style="width:150px">
+						style="width:150px" required="true">
 						<f:selectItem itemLabel="Select User" itemValue=""
 							noSelectionOption="true" />
 						<f:selectItems value="#{userBean.userList}" var="user"

@@ -1,77 +1,102 @@
 package messenger.View.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
-import messenger.Interface.ManageChatGroups;
+import messenger.Interface.Communication;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 
-@Component
-@Scope("singleton")
+@ManagedBean
+@SessionScoped
 public class ChatBean {
     
-	/*
-	@Autowired
-    private FehlerService fehlerService;*/
-	
-    @Autowired
-    private ManageChatGroups manageChatGroups;
-    
-    @Autowired
+	@ManagedProperty("#{userBean}")
     private UserBean userBean;
     
-    private List<String> chatList;
+	@ManagedProperty("#{chatBeanList}")
+    private ChatListBean chatBeanList;
     
-   //private Projekt projekt = new Projekt();
+    @Autowired
+    private Communication communication;
     
-/*
-    private Chat chat = new Chat();
+    private String[][] arrayMessages;
     
-    private List<Projekt> projektList;
-    */
+    private String message;
+    
+    private List<String> messageList = new ArrayList<String>();
+    
     
     @PostConstruct
     private void init() {
+    	messageList.add("Peter 10:20 Hallo");
+    	messageList.add("Peter 10:20 Test");
+    }
 
-        //projektList = fehlerService.selectProjekteFromDb();
-        
-    }
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
+
+
+	public ChatListBean getChatBeanList() {
+		return chatBeanList;
+	}
+
+
+	public void setChatBeanList(ChatListBean chatBeanList) {
+		this.chatBeanList = chatBeanList;
+	}
+
+
+	public Communication getCommunication() {
+		return communication;
+	}
+
+
+	public void setCommunication(Communication communication) {
+		this.communication = communication;
+	}
+
+
+	public String[][] getArrayMessages() {
+		return arrayMessages;
+	}
+
+
+	public void setArrayMessages(String[][] arrayMessages) {
+		this.arrayMessages = arrayMessages;
+	}
+
+
+	public String getMessage() {
+		return message;
+	}
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
+	public List<String> getMessageList() {
+		return messageList;
+	}
+
+
+	public void setMessageList(List<String> messageList) {
+		this.messageList = messageList;
+	}
     
-	/*
-    private void init() {
-        projektList = fehlerService.selectProjekteFromDb();
-        
-    }
-    
-    public List<Projekt> getProjektList() {
-        return projektList;
-    }
-    
-    public String showProjekt(Projekt projekt) {
-        this.setProjekt(projekt);
-        return "success";
-    }
-    
-    public Projekt getProjekt() {
-        return projekt;
-    }
-    
-    public void setProjekt(Projekt projekt) {
-        this.projekt = projekt;
-    }
-    
-    public UserBean getUserBean() {
-        return userBean;
-    }
-    
-    public void setUserBean(UserBean userBean) {
-        this.userBean = userBean;
-    }
-    */
 
 }
