@@ -1,6 +1,9 @@
 package messenger.Service;
 
 import java.util.List;
+
+import messenger.Domain.User;
+
 import java.util.AbstractMap.SimpleEntry;
 
 public interface UserService {
@@ -34,23 +37,13 @@ public interface UserService {
 	 *            werden soll
 	 */
 	public <T> void removeObject(T entity);
-	
-	
-	//USERMANAGEMENT
-	public int addUser(String username, String password);
-
-	public boolean deleteUser(int userid);
-
-	public boolean updateUser(int userid, String username, String password);
-
-	public int loginUser(String username, String password);
 
 	public List<SimpleEntry<Long, String>> getAllUsers();
 	
 	//GETUSER
-	public int getUser(String username);
+	public User getUserById(Long userId);
 	
-	//UserValidation
-	public boolean checkIfUserExists(int user_id);
+	public User getUserByName(String username);
+
 
 }

@@ -5,9 +5,11 @@ import java.util.AbstractMap.SimpleEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import messenger.Domain.User;
 import messenger.Interface.UserManagement;
 import messenger.Service.UserService;
 
@@ -19,36 +21,51 @@ public class UserManagementImpl implements UserManagement {
     @Autowired
     private UserService userservice;  // = new UserServiceImpl();
     
+    @Transactional
 	public int addUser(String username, String password) {
     	if (isOkUsername(username) && isOkPassword(password)) {
-    		if (userservice.getUser(username) != -1) {
-    			return userservice.addUser(username,password);
+    		if (userservice.getUserByName(username) == null) {
+    			User newuser = new User();
+    			newuser.setUsername(username);
+    			newuser.setPassword(password);
+    			userservice.persistObject(newuser);
+    			return 0;
     		} else return 1;
     	}
 		return 2;
 	}
     
-	public boolean deleteUser(int userid) {
-		if (userservice.checkIfUserExists(userid)) {
-			return userservice.deleteUser(userid);
+    @Transactional
+	public boolean deleteUser(Long userId) {
+		User user = userservice.getUserById(userId);
+		if (user == null) {
+			return false;
 		} 
-		return false;
+		userservice.removeObject(user);
+		return true;	
 	}
 
-	public boolean updateUser(int userid, String username, String password) {
-		if (isOkUsername(username) && isOkPassword(password) && userservice.checkIfUserExists(userid)) {
-			return userservice.updateUser(userid, username, password);
+    @Transactional
+	public boolean updateUser(Long userId, String username, String password) {
+		User user = userservice.getUserById(userId);
+		if (isOkUsername(username) && isOkPassword(password) && user != null) {
+			user.setPassword(password);
+			user.setUsername(username);
+			userservice.mergeObject(user);
+			return true;
 		}
 		return false;
 	}
 
 	public int loginUser(String username, String password) {
-		if (isOkUsername(username) && isOkPassword(password)) {
-			return userservice.loginUser(username, password);
-		}
+		
+	//	if (isOkUsername(username) && isOkPassword(password)) {
+	//		return userservice.loginUser(username, password);
+	//	}
 		return 0;
 	}
 
+	@Transactional
 	public List<SimpleEntry<Long, String>> getAllUsers() {
 		return userservice.getAllUsers();
 	}

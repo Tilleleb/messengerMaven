@@ -14,35 +14,35 @@ import messenger.Interface.UserManagement;
 public class UserManagementTest {
 	
 	@Autowired
-	UserManagement service;
+	UserManagement userManagement;
 
 	@Test
 	public void testOkAddUser() {
-		Assert.assertEquals(0,service.addUser("user1", "password1"));
+		Assert.assertEquals(0,userManagement.addUser("user1", "password1"));
 	}
 	
 	@Test
 	public void testAlreadyExistAddUser() {
-		service.addUser("user1", "password1");
-		Assert.assertEquals(1,service.addUser("user1", "password1"));
+		userManagement.addUser("user1", "password1");
+		Assert.assertEquals(1,userManagement.addUser("user1", "password1"));
 	}
 	
 	@Test
 	public void testErrorAddUser() {
-		Assert.assertEquals(2,service.addUser("user2", "password2"));
+		Assert.assertEquals(2,userManagement.addUser("user2", "password2"));
 	}
 	
 	// Test delete User
 	
 	@Test
 	public void testOkDeleteUser() {
-		service.addUser("user1", "password1");
-		Assert.assertTrue(service.deleteUser(1));
+		userManagement.addUser("user1", "password1");
+		Assert.assertTrue(userManagement.deleteUser((long) 1));
 	}
 	
 	@Test
 	public void testErrorDeleteUser() {
-		Assert.assertFalse(service.deleteUser(0));
+		Assert.assertFalse(userManagement.deleteUser((long) 0));
 	}
 	
 	
@@ -50,32 +50,32 @@ public class UserManagementTest {
 
 	@Test
 	public void testOkUpdateUser() {
-		service.addUser("user1", "password1");
-		Assert.assertTrue(service.updateUser(1, "user1", "password1"));
+		userManagement.addUser("user1", "password1");
+		Assert.assertTrue(userManagement.updateUser((long) 1, "user1", "password1"));
 	}
 	
 	@Test
 	public void testWrongUserUpdateUser() {
-		service.addUser("user1", "password1");
-		Assert.assertFalse(service.updateUser(0, "user1", "password1"));
+		userManagement.addUser("user1", "password1");
+		Assert.assertFalse(userManagement.updateUser((long) 0, "user1", "password1"));
 	}
 	
 	@Test
 	public void testEmptyPwUpdateUser() {
-		service.addUser("user1", "password1");
-		Assert.assertFalse(service.updateUser(1, "user1", ""));
+		userManagement.addUser("user1", "password1");
+		Assert.assertFalse(userManagement.updateUser((long) 1, "user1", ""));
 	}
 	
 	@Test
 	public void testEmptyUsernameUpdateUser() {
-		service.addUser("user1", "password1");
-		Assert.assertFalse(service.updateUser(1, "", "password1"));
+		userManagement.addUser("user1", "password1");
+		Assert.assertFalse(userManagement.updateUser((long) 1, "", "password1"));
 	}
 	
 	@Test
 	public void testWrongSignsUpdateUser() {
-		service.addUser("user1", "password1");
-		Assert.assertFalse(service.updateUser(1, "user1%", "password1"));
+		userManagement.addUser("user1", "password1");
+		Assert.assertFalse(userManagement.updateUser((long) 1, "user1%", "password1"));
 	}
 	
 	
@@ -84,14 +84,14 @@ public class UserManagementTest {
 	
 	@Test
 	public void testOkLoginUser() {
-		service.addUser("user1", "password1");
-		Assert.assertEquals(1, service.loginUser("user1", "password1"));
+		userManagement.addUser("user1", "password1");
+		Assert.assertEquals(1, userManagement.loginUser("user1", "password1"));
 	}
 	
 	@Test
 	public void testNoMatchLoginUser() {
-		service.addUser("user1", "password1");
-		Assert.assertEquals(0, service.loginUser("user0", "password0"));
+		userManagement.addUser("user1", "password1");
+		Assert.assertEquals(0, userManagement.loginUser("user0", "password0"));
 	}
 	
 }
