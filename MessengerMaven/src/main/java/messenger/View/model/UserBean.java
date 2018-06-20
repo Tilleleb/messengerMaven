@@ -1,35 +1,31 @@
 package messenger.View.model;
 
 import java.io.Serializable;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.AbstractMap.SimpleEntry;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
-import messenger.Domain.User;
 import messenger.Interface.GetUser;
 import messenger.Interface.UserManagement;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
 
-@ManagedBean(name = "userBean")
-@Component
-@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@ManagedBean
+@SessionScoped
 public class UserBean implements Serializable {
-    
-    @Autowired
+	private static final long serialVersionUID = 1L;
+
+	
+	@Autowired
     private UserManagement userManagement;
     
     @Autowired
     private GetUser getUser;
     
-    private List<SimpleEntry<Long, String>> userList = new ArrayList<SimpleEntry<Long, String>>();
+    private List<String> userList = new ArrayList<String>();
     
     private String username;
     
@@ -39,8 +35,9 @@ public class UserBean implements Serializable {
     
     @PostConstruct
     public void init() {
-    
-        //userList = userManagement.getAllUsers();
+    	userList.add("Peter");
+    	userList.add("Bob");
+    	//userList = userManagement.getAllUsers();
     }
 
 	public UserManagement getUserManagement() {
@@ -51,14 +48,14 @@ public class UserBean implements Serializable {
 		this.userManagement = userManagement;
 	}
 
-	/*
-	public List<Object> getUserList() {
+	
+	public List<String> getUserList() {
 		return userList;
 	}
 
-	public void setUserList(List<Object> userList) {
+	public void setUserList(List<String> userList) {
 		this.userList = userList;
-	}*/
+	}
 
 	public String getUsername() {
 		return username;
