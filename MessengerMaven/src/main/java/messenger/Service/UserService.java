@@ -3,8 +3,6 @@ package messenger.Service;
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
 
-import messenger.Domain.User;
-
 public interface UserService {
 
 	/**

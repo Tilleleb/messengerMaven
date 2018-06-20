@@ -49,7 +49,9 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public boolean deleteUser(int userid) {
-
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.userId = :userId", User.class);
+		query.setParameter("userId", userid);
+        em.remove(query.getSingleResult());
 		return true;
 	}
 
@@ -70,23 +72,30 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public List<SimpleEntry<Long, String>> getAllUsers() {
-
-		return null;
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user", User.class);
+		query.getResultList();
+        return;
 	}
 	
 	
 	//GETUSER
 	@Transactional
 	public int getUser(String username) {
-		
-		return -1;
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.username = :username", User.class);
+		query.setParameter("username", username);
+		return query.getSingleResult().getUserId();
 	}
 	
 	
 	//UserValidation
 	@Transactional
 	public boolean checkIfUserExists(int user_id) {
-		
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.userId = :userId", User.class);
+		query.setParameter("userId", user_id);
+        User tmpUser = query.getSingleResult();
+        if (tmpUser != null) {
+        	return true;
+        } 
 		return false;
 	}
 }
