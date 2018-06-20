@@ -13,10 +13,8 @@ import messenger.Interface.UserManagement;
 @ContextConfiguration(locations = {"classpath:spring/applicationContext.xml"})
 public class UserManagementTest {
 
+
 	@Autowired
-
-	UserManagement service;
-
 	UserManagement userManagement;
 
 	@Test

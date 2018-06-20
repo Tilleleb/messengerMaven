@@ -21,7 +21,7 @@ public class AddUserBean implements Serializable{
 	
 	private String password;
 	
-	@Autowired
+	//@Autowired
 	private UserBean userBean;
 
 	@Autowired
