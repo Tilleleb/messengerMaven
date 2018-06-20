@@ -1,13 +1,21 @@
 package messenger.Implementation;
 
-import messenger.Interface.UserValidation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
+import messenger.Interface.UserValidation;
+import messenger.Service.UserService;
+
+@Service
+@Scope("singleton")
 public class UserValidationImpl implements UserValidation {
+	
+	@Autowired
+    private UserService userservice; 
 
 	public boolean checkIfUserExists(int user_id) {
-		// TODO Auto-generated method stub
-		if (user_id == 1) return true;
-		return false;
+		return userservice.checkIfUserExists(user_id);
 	}
 
 }

@@ -1,16 +1,25 @@
 package messenger.Implementation;
 
-import messenger.Interface.GetUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
+import messenger.Interface.GetUser;
+import messenger.Service.UserService;
+
+@Service
+@Scope("singleton")
 public class GetUserImpl implements GetUser {
 
+	@Autowired
+    private UserService userservice;
 	
 	// return -1 wenn kein user gefunden
 	public int getUser(String username) {
-		// TODO Auto-generated method stub
-		if ( username == "user1") return 1;
-		if ( username == "user0") return 0;
-		return 0;
+		if (username == null || username.length() < 1 || username.length() > 20) {
+			return -1;
+		} 
+		return userservice.getUser(username);
 	}
 
 }
