@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name="chatId", referencedColumnName="chatId")
+@PrimaryKeyJoinColumn(name="chatId", referencedColumnName="CHAT_ID")
 public class GroupConversation extends ChatConversation {
 	
     @Id

@@ -84,7 +84,6 @@ public class UserServiceImpl implements UserService {
 		{
 			users.add(user.getUsername());
 		}
-		
         return users;
 	}
 	

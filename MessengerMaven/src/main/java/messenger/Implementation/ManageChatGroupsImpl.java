@@ -1,7 +1,12 @@
 package messenger.Implementation;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
 import messenger.Interface.ManageChatGroups;
 
+@Service
+@Scope("singleton")
 public class ManageChatGroupsImpl implements ManageChatGroups {
 
 	public boolean addConversation(String name, byte[] picture) {

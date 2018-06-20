@@ -1,5 +1,6 @@
 package messenger.Domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Message {
+public class Message implements Serializable {
 
 	@Id
 	@GeneratedValue

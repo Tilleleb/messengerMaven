@@ -39,16 +39,16 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public boolean sendMessage(String txt, int user_id, int chat_id) {
-		// TODO Auto-generated method stub
-		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
-		query.setParameter("chatId", chat_id);
-        em.remove(query.getSingleResult());
-		return true;		
-		
-		
-		Message message = new Message();
-		message.set
-		return false;
+//		// TODO Auto-generated method stub
+//		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
+//		query.setParameter("chatId", chat_id);
+//        em.remove(query.getSingleResult());
+//		return true;		
+//		
+//		
+//		Message message = new Message();
+//		message.set
+	return false;
 	}
 
 	@Override

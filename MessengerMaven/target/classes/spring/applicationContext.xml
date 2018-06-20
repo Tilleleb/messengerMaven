@@ -13,7 +13,7 @@
 	<context:component-scan base-package="messenger" />
 
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://linex-design.de/kba_db"
+		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://linex-design.de/kba_db?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Amsterdam&amp;useSSL=false"
 		p:username="kba_db" p:password="htwss18" p:initSQL="SELECT 1"
 		p:validationQuery="SELECT 1" p:logValidationErrors="false"
 		p:logAbandoned="false" p:testOnBorrow="true" />

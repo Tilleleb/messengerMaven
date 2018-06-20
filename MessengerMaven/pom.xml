@@ -16,6 +16,7 @@
   </properties>
   <dependencies>
   
+
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
@@ -111,6 +112,14 @@
 		<artifactId>spring-web</artifactId>
 		<version>${springframework.version}</version>
 	</dependency>
+	
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>5.0.7.RELEASE</version>
+    <scope>test</scope>
+</dependency>
 
 	<!-- Hibernate -->
 	<dependency>
@@ -132,7 +141,16 @@
    	 	<version>4.12</version>
     	<scope>test</scope>
 	</dependency>
-
+  <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>1.7.5</version>
+   </dependency>
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-log4j12</artifactId>
+       <version>1.7.5</version>
+   </dependency>
     
     <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-core -->
 	<dependency>
@@ -142,6 +160,13 @@
     	<scope>test</scope>
 	</dependency>
 
+<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jdbc -->
+<dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-jdbc</artifactId>
+    <version>9.0.8</version>
+</dependency>
 
   </dependencies>
+
 </project>
