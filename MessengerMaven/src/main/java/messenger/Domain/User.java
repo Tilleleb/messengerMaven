@@ -34,7 +34,27 @@ public class User implements Serializable {
     )
     private List<User> contacts = new ArrayList<User>();
     
-    @ManyToMany
+    public List<User> getContacts() {
+		return contacts;
+	}
+
+
+	public void setContacts(List<User> contacts) {
+		this.contacts = contacts;
+	}
+
+
+	public List<User> getContactOf() {
+		return contactOf;
+	}
+
+
+	public void setContactOf(List<User> contactOf) {
+		this.contactOf = contactOf;
+	}
+
+
+	@ManyToMany
     @JoinTable(name = "CONTACTS",
     	joinColumns = @JoinColumn(name = "CONTACT_ID"),
     	inverseJoinColumns = @JoinColumn(name = "USER_ID")
