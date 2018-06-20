@@ -14,8 +14,8 @@ public class UserValidationImpl implements UserValidation {
 	@Autowired
     private UserService userservice; 
 
-	public boolean checkIfUserExists(int user_id) {
-		return userservice.checkIfUserExists(user_id);
+	public boolean checkIfUserExists(Long userId){
+		return true;
 	}
 
 }

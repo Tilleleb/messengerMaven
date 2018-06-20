@@ -21,7 +21,7 @@ public interface UserManagement {
 	 * @return true: user deleted successfully<br>
 	 * false: error while deleting
 	 */
-	public boolean deleteUser(int userid);
+	public boolean deleteUser(Long userid);
 	
 	/**
 	 * update user data
@@ -31,7 +31,7 @@ public interface UserManagement {
 	 * @return true: update successful<br>
 	 * false: error while updating
 	 */
-	public boolean updateUser(int userid, String username, String password);
+	public boolean updateUser(Long userid, String username, String password);
 	
 	/**
 	 * checks login credentials

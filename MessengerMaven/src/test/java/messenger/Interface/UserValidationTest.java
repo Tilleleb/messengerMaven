@@ -18,12 +18,12 @@ public class UserValidationTest {
 
 	@Test
 	public void testUserExist() {
-		Assert.assertTrue(service.checkIfUserExists(1));
+		Assert.assertTrue(service.checkIfUserExists((long) 1));
 	}
 	
 	@Test
 	public void testUserDontExist() {
-		Assert.assertFalse(service.checkIfUserExists(0));
+		Assert.assertFalse(service.checkIfUserExists((long) 0));
 	}
 	
 

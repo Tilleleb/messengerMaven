@@ -19,7 +19,7 @@ public class User implements Serializable {
     @GeneratedValue
     @Id
     @Column(name = "USER_ID")
-    private int userId;
+    private Long userId;
     
     @Column(name = "USERNAME")
     private String username;
@@ -61,12 +61,12 @@ public class User implements Serializable {
     )
     private List<User> contactOf = new ArrayList<User>();
 	
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
