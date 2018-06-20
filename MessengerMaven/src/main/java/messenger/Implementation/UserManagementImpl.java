@@ -49,7 +49,7 @@ public class UserManagementImpl implements UserManagement {
 		return 0;
 	}
 
-	public List<SimpleEntry<Long, String>> getAllUsers() {
+	public List<String> getAllUsers() {
 		return userservice.getAllUsers();
 	}
 	

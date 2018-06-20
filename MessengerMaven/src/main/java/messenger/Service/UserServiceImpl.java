@@ -1,7 +1,7 @@
 package messenger.Service;
 
 import java.util.List;
-import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -57,7 +57,12 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public boolean updateUser(int userid, String username, String password) {
-
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.userId = :userId", User.class);
+		query.setParameter("userId", userid);
+        User user = query.getSingleResult();
+        user.setUsername(username);
+        user.setPassword(password);
+        em.merge(user);
 		return true;
 	}
 
@@ -71,10 +76,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Transactional
-	public List<SimpleEntry<Long, String>> getAllUsers() {
+	public List<String> getAllUsers() {
 		TypedQuery<User> query = em.createQuery("SELECT user FROM User user", User.class);
-		query.getResultList();
-        return;
+		List<User> userlist = query.getResultList();
+		List<String> users = new ArrayList<String>();
+		for( User user: userlist )
+		{
+			users.add(user.getUsername());
+		}
+		
+        return users;
 	}
 	
 	

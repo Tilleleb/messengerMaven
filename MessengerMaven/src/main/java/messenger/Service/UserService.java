@@ -45,7 +45,7 @@ public interface UserService {
 
 	public int loginUser(String username, String password);
 
-	public List<SimpleEntry<Long, String>> getAllUsers();
+	public List<String> getAllUsers();
 	
 	//GETUSER
 	public int getUser(String username);

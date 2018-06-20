@@ -42,6 +42,6 @@ public interface UserManagement {
 	 */
 	public int loginUser(String username, String password);
 	
-	public List<AbstractMap.SimpleEntry<Long,String>> getAllUsers();
+	public List<String> getAllUsers();
 	
 }

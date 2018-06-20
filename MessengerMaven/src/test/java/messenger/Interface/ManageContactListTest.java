@@ -21,22 +21,22 @@ public class ManageContactListTest {
 
 	@Test
 	public void testOkAddUser() {
-		Assert.assertTrue(service.addContact(1,"user2"));
+		Assert.assertTrue(service.addContact(1,2));
 	}
 	
 	@Test
 	public void testUserDoesntExistAddUser() {
-		Assert.assertFalse(service.addContact(3,"user2"));
+		Assert.assertFalse(service.addContact(3,2));
 	}	
 	
 	@Test
 	public void testContactDoesntExistAddUser() {
-		Assert.assertFalse(service.addContact(1,"user3"));
+		Assert.assertFalse(service.addContact(1,3));
 	}
 	
 	@Test
 	public void testSelfAddingAddUser() {
-		Assert.assertFalse(service.addContact(1,"user1"));
+		Assert.assertFalse(service.addContact(1,1));
 	}
 	
 	// Test Delete Contact

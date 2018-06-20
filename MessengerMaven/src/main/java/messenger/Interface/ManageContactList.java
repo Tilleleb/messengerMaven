@@ -8,7 +8,7 @@ public interface ManageContactList {
 	 * @param contactid		id of the contact (a contact is also a user)
 	 * @return				true: the contact was added
 	 */
-	public boolean addContact(int userid, String contactname);
+	public boolean addContact(int userid, int contactid);
 	
 	/**
 	 * deletes a user from a user contact list
