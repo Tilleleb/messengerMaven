@@ -1,6 +1,8 @@
 package messenger.Implementation;
 
-import java.util.AbstractMap.SimpleEntry;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -18,8 +20,10 @@ public class UserManagementImpl implements UserManagement {
 	 
     @Autowired
     private UserService userservice;  // = new UserServiceImpl();
+    @PersistenceContext
+	private EntityManager em;
     
-	public int addUser(String username, String password) {
+	public int addUser(String username, String password) {	
     	if (isOkUsername(username) && isOkPassword(password)) {
     		if (userservice.getUser(username) != -1) {
     			return userservice.addUser(username,password);

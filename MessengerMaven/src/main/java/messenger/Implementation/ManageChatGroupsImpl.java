@@ -3,6 +3,7 @@ package messenger.Implementation;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import messenger.Domain.ChatConversation;
 import messenger.Interface.ManageChatGroups;
 
 @Service
@@ -18,8 +19,7 @@ public class ManageChatGroupsImpl implements ManageChatGroups {
 	}
 
 	public boolean deleteConveration(int chat_id) {
-		// TODO Auto-generated method stub
-		if (chat_id == 1) return true;
+		
 		return false;
 	}
 

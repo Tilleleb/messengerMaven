@@ -8,7 +8,9 @@ import javax.transaction.Transactional;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import messenger.Domain.ChatConversation;
 import messenger.Domain.User;
+import messenger.Domain.UserChat;
 
 @Service
 @Scope("singleton")
@@ -49,31 +51,46 @@ public class ConversationServiceImpl implements ConversationService{
 
 	@Override
 	public int[] getContactList(int userid) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public boolean checkIfChatExists(int chat_id) {
-		// TODO Auto-generated method stub
+		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
+		query.setParameter("chatId", chat_id);
+        ChatConversation tmpChat = query.getSingleResult();
+        if (tmpChat != null) {
+        	return true;
+        } 
 		return false;
 	}
 
 	@Override
 	public boolean addConversation(String name, byte[] picture) {
-		// TODO Auto-generated method stub
+		ChatConversation chat = new ChatConversation();
+		UserChat userChat = new UserChat();
+		persistObject(chat);
+		userChat.setChat(chat);
+		persistObject(userChat);
 		return false;
 	}
 
 	@Override
 	public boolean deleteConveration(int chat_id) {
-		// TODO Auto-generated method stub
-		return false;
+		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
+		query.setParameter("chatId", chat_id);
+        ChatConversation tmpChat = query.getSingleResult();
+        removeObject(tmpChat);
+		return true;
 	}
 
 	@Override
 	public boolean updateConversation(int chat_id, String name, byte[] picture) {
-		// TODO Auto-generated method stub
+//		TypedQuery<UserChat> query = em.createQuery("SELECT chat FROM UserChat chat WHERE chat.chatId = :chatId", UserChat.class);
+//		query.setParameter("chatId", chat_id);
+//        ChatConversation tmpChat = query.getSingleResult();
+//        removeObject(tmpChat);
 		return false;
 	}
 

@@ -60,15 +60,6 @@ public class User implements Serializable {
     	inverseJoinColumns = @JoinColumn(name = "USER_ID")
     )
     private List<User> contactOf = new ArrayList<User>();
-    
-    public List<User> getContacts(){
-    	// TODO Auto-generated method stub
-    	return null;
-    }
-    
-    public void setContacts(User user, User contact) {
-    	// TODO Auto-generated method stub
-    }
 	
 	public int getUserId() {
 		return userId;
