@@ -1,31 +1,33 @@
 package messenger.Interface;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import messenger.Implementation.UserManagementImpl;
 import messenger.Interface.UserManagement;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/applicationContext.xml"})
 public class UserManagementTest {
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/Tilleleb/messengerMaven
 	@Autowired
 	UserManagement service;
+<<<<<<< HEAD
 	
 //    @Before
 //    public void initialize() {
 //    	service = new UserManagementImpl();
 //     }
+=======
+>>>>>>> branch 'master' of https://github.com/Tilleleb/messengerMaven
 
-
-	// Test addUser
-	
 	@Test
 	public void testOkAddUser() {
 		Assert.assertEquals(0,service.addUser("user1", "password1"));

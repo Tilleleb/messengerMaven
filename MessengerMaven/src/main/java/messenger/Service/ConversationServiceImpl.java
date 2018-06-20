@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import messenger.Domain.ChatConversation;
+import messenger.Domain.GroupConversation;
 import messenger.Domain.User;
 import messenger.Domain.UserChat;
 
@@ -68,29 +69,27 @@ public class ConversationServiceImpl implements ConversationService{
 
 	@Override
 	public boolean addConversation(String name, byte[] picture) {
-		ChatConversation chat = new ChatConversation();
-		UserChat userChat = new UserChat();
-		persistObject(chat);
-		userChat.setChat(chat);
-		persistObject(userChat);
+		GroupConversation groupChat = new GroupConversation();
+		groupChat.setName(name);
+		persistObject(groupChat);
 		return false;
 	}
 
 	@Override
 	public boolean deleteConveration(int chat_id) {
-		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
+		TypedQuery<GroupConversation> query = em.createQuery("SELECT chat FROM GroupConversation chat WHERE chat.chatId = :chatId", GroupConversation.class);
 		query.setParameter("chatId", chat_id);
-        ChatConversation tmpChat = query.getSingleResult();
+		GroupConversation tmpChat = query.getSingleResult();
         removeObject(tmpChat);
 		return true;
 	}
 
 	@Override
 	public boolean updateConversation(int chat_id, String name, byte[] picture) {
-//		TypedQuery<UserChat> query = em.createQuery("SELECT chat FROM UserChat chat WHERE chat.chatId = :chatId", UserChat.class);
-//		query.setParameter("chatId", chat_id);
-//        ChatConversation tmpChat = query.getSingleResult();
-//        removeObject(tmpChat);
+		TypedQuery<GroupConversation> query = em.createQuery("SELECT chat FROM GroupConversation chat WHERE chat.chatId = :chatId", GroupConversation.class);
+		query.setParameter("chatId", chat_id);
+		GroupConversation tmpChat = query.getSingleResult();
+		tmpChat.setName(name);
 		return false;
 	}
 
