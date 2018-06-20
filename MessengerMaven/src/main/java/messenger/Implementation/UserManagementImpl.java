@@ -1,59 +1,71 @@
 package messenger.Implementation;
 
 import java.util.AbstractMap.SimpleEntry;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 import messenger.Interface.UserManagement;
+import messenger.Service.UserService;
 
+
+@Service
+@Scope("singleton")
 public class UserManagementImpl implements UserManagement {
-	
-	private int userid = -1;
-	private String username;
-	private String password;
-
+	 
+    @Autowired
+    private UserService userservice;  // = new UserServiceImpl();
+    
 	public int addUser(String username, String password) {
-		// TODO Auto-generated method stub
-		if (this.username == null && username == "user1") {
-			this.userid = 1;
-			this.username = username;
-			this.password = password;
-			return 0;
-		} else if (username == "user1") {
-			return 1;
-		} else return 2;
+    	if (isOkUsername(username) && isOkPassword(password)) {
+    		if (userservice.getUser(username) != -1) {
+    			return userservice.addUser(username,password);
+    		} else return 1;
+    	}
+		return 2;
 	}
-
+    
 	public boolean deleteUser(int userid) {
-		// TODO Auto-generated method stub
-		if (this.userid == userid) {
-			this.userid = -1;
-			this.username = null;
-			this.password = null;
-			return true;
-		} else return false;
+		if (userservice.checkIfUserExists(userid)) {
+			return userservice.deleteUser(userid);
+		} 
+		return false;
 	}
 
 	public boolean updateUser(int userid, String username, String password) {
-		// TODO Auto-generated method stub
-		if (username.indexOf('%') >= 0) return false;
-		if (username.length() == 0 || password.length() == 0) return false;
-		if (this.userid == userid) {
-			this.username = username;
-			this.password = password;
-			return true;
-		} return false;
+		if (isOkUsername(username) && isOkPassword(password) && userservice.checkIfUserExists(userid)) {
+			return userservice.updateUser(userid, username, password);
+		}
+		return false;
 	}
 
 	public int loginUser(String username, String password) {
-		// TODO Auto-generated method stub
-		if (this.username == username && this.password == password) return userid;
+		if (isOkUsername(username) && isOkPassword(password)) {
+			return userservice.loginUser(username, password);
+		}
 		return 0;
 	}
 
-	@Override
 	public List<SimpleEntry<Long, String>> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userservice.getAllUsers();
+	}
+	
+	
+	private boolean isOkUsername(String username) {
+		if (username == null || username.length() < 1 || username.length() > 20) {
+    		return false;
+    	}
+		return true;
+	}
+	
+	private boolean isOkPassword(String password) {
+		if (password == null || password.length() < 1 || password.length() > 20) {
+    		return false;
+    	}
+		return true;
 	}
 
 }

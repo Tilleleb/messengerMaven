@@ -4,6 +4,8 @@ import messenger.Interface.GetUser;
 
 public class GetUserImpl implements GetUser {
 
+	
+	// return -1 wenn kein user gefunden
 	public int getUser(String username) {
 		// TODO Auto-generated method stub
 		if ( username == "user1") return 1;

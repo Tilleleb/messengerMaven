@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue
     @Id
     @Column(name = "USER_ID")
-    private Long userId;
+    private int userId;
     
     @Column(name = "USERNAME")
     private String username;
@@ -40,12 +40,12 @@ public class User {
     )
     private List<User> contactOf = new ArrayList<User>();
 	
-	public Long getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(Long userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
