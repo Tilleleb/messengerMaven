@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
 	public List<SimpleEntry<Long, String>> getAllUsers() {
 		TypedQuery<User> query = em.createQuery("SELECT user FROM User user", User.class);
 		query.getResultList();
-        return;
+        return null;
 	}
 	
 	

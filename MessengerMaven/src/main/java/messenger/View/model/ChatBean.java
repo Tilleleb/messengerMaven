@@ -37,8 +37,7 @@ public class ChatBean {
     
     @PostConstruct
     private void init() {
-    	chatList.add("ChatA");
-    	chatList.add("ChatB");
+
         //projektList = fehlerService.selectProjekteFromDb();
         
     }
