@@ -1,6 +1,10 @@
 package messenger.View.model;
 
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,15 +19,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @ManagedBean
 @SessionScoped
-public class ChatBean {
-    
+public class ChatBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@ManagedProperty("#{userBean}")
     private UserBean userBean;
     
 	@ManagedProperty("#{chatBeanList}")
     private ChatListBean chatBeanList;
     
-    @Autowired
+	@ManagedProperty("#{communication}")
     private Communication communication;
     
     private String[][] arrayMessages;
@@ -35,8 +40,7 @@ public class ChatBean {
     
     @PostConstruct
     private void init() {
-    	messageList.add("Peter 10:20 Hallo");
-    	messageList.add("Peter 10:20 Test");
+    	//communication.recieveMessage(chatBeanList.getChatId());
     }
 
 	public UserBean getUserBean() {
@@ -98,5 +102,12 @@ public class ChatBean {
 		this.messageList = messageList;
 	}
     
+	public void sendMessage(){
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		Date date = new Date();
+		
+		messageList.add(userBean.getUsername() + " - " + dateFormat.format(date) + " - " + message);
+		this.message = "";
+	}
 
 }
