@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import messenger.Implementation.ManageChatGroupsImpl;
-import messenger.Interface.ManageChatGroups;
+import messenger.ChatService.ManageChatGroups;
+import messenger.ChatServiceImpl.ManageChatGroupsImpl;
 
 public class ManageChatGroupsTest {
 

@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import messenger.Implementation.GetUserImpl;
-import messenger.Interface.GetUser;
+import messenger.ChatService.GetUser;
+import messenger.ChatServiceImpl.GetUserImpl;
 
 /**
  * Unit test for simple App.

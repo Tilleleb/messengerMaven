@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import messenger.Implementation.CommunicationImpl;
-import messenger.Interface.Communication;
+import messenger.ChatService.Communication;
+import messenger.ChatServiceImpl.CommunicationImpl;
 
 public class CommunicationTest {
 

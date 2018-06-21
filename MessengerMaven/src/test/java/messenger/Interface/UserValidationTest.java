@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import messenger.Implementation.UserValidationImpl;
-import messenger.Interface.UserValidation;
+import messenger.ChatService.UserValidation;
+import messenger.ChatServiceImpl.UserValidationImpl;
 
 public class UserValidationTest {
 
