@@ -34,8 +34,8 @@ public interface MessageService {
 	
 	
 	//Communication
-	public boolean sendMessage(String txt, int user_id, int chat_id);
+	public boolean sendMessage(String txt, Long userId, Long chatId);
 
-	public String[][] recieveMessage(int chat_id);
+	public String[][] recieveMessage(Long chatId);
 
 }

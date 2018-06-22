@@ -1,22 +1,33 @@
 package messenger.ChatService;
 
+import java.util.List;
+
 public interface ManageChatGroups {
 	
-	
 	/**
-	 * adds a new conversation
+	 * adds a new group conversation
+	 * @param userId of the user who create the chat
 	 * @param name of the conversation
 	 * @param picture adds a picture to the conversation
 	 * @return true: Conversation was added
 	 */
-	public boolean addConversation(String name, byte[] picture);
+	public boolean addConversation(Long userId);	
+	
+	/**
+	 * adds a new group conversation
+	 * @param userId of the user who create the chat
+	 * @param name of the conversation
+	 * @param picture adds a picture to the conversation
+	 * @return true: Conversation was added
+	 */
+	public boolean addGroupConversation(Long userId, String name, byte[] picture);
 	
 	/**
 	 * delete a conversation
 	 * @param chat_id id of the conversation
 	 * @return true: id conversation was deleted
 	 */
-	public boolean deleteConveration(int chat_id);
+	public boolean deleteConveration(Long chatId);
 	
 	
 	/**
@@ -26,13 +37,13 @@ public interface ManageChatGroups {
 	 * @param picture new picture for the conversation
 	 * @return true: conversation was updated
 	 */
-	public boolean updateConversation(int chat_id, String name, byte[] picture);
+	public boolean updateConversation(Long chatId, String name, byte[] picture);
 	
 	/**
 	 * @param user_id the user_id of the user who wants to view his chats
 	 * @return returns a two dimensional array with all the informations of conversations belonging to a user
 	 */
-	public String[][] getAllConversations(int user_id);
+	public List<Long> getAllConversations(Long userId);
 	
 	/**
 	 * adds a user to the conversation
@@ -40,7 +51,7 @@ public interface ManageChatGroups {
 	 * @param user_id id of the user that should be added
 	 * @return true: the user was added
 	 */
-	public boolean addUserToConversation(int chat_id, int user_id);
+	public boolean addUserToConversation(Long chatId, Long userId);
 	
 	/**
 	 * delete a user from a conversation
@@ -48,7 +59,7 @@ public interface ManageChatGroups {
 	 * @param user_id id of the user that should be deleted
 	 * @return true:  the user was deleted
 	 */
-	public boolean deleteUserFromConversation(int chat_id, int user_id);
+	public boolean deleteUserFromConversation(Long chatId, Long userId);
 	
 	/**
 	 * grant admin rigths to a user of a conversation
@@ -56,7 +67,7 @@ public interface ManageChatGroups {
 	 * @param user_id id of the user that gets admin rights
 	 * @return true: admin right where correctly added
 	 */
-	public boolean grantAdminPermission(int chat_id, int user_id);
+	public boolean grantAdminPermission(Long chatId, Long userId);
 	
 	/**
 	 * revoke admin rigths from a user of a conversation
@@ -64,7 +75,7 @@ public interface ManageChatGroups {
 	 * @param user_id id of the user that gets his admin rights revoked
 	 * @return true: admin right where correctly revoked
 	 */
-	public boolean revokeAdminPermission(int chat_id, int user_id);
+	public boolean revokeAdminPermission(Long chatId, Long userId);
 	
 	
 

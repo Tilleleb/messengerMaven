@@ -9,9 +9,9 @@ import messenger.ChatService.ChatValidation;
 @Scope("singleton")
 public class ChatValidationImpl implements ChatValidation {
 
-	public boolean checkIfChatExists(int chat_id) {
+	public boolean checkIfChatExists(Long chatId) {
 		// TODO Auto-generated method stub
-		if (chat_id == 1) return true;
+
 		return false;
 	}
 

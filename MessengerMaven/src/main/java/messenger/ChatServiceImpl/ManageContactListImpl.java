@@ -19,18 +19,18 @@ public class ManageContactListImpl implements ManageContactList {
     private UserService userService; 
 	
 	@Transactional
-	public boolean addContact(Long userid, Long contactid) {
-		User user = userService.getUserById(userid);
-		User contact = userService.getUserById(contactid);
+	public boolean addContact(Long userId, Long contactId) {
+		User user = userService.getUserById(userId);
+		User contact = userService.getUserById(contactId);
 		user.getContacts().add(contact);
 		userService.persistObject(user);
 		return true;
 	}
 
 	@Transactional
-	public boolean deleteContact(Long userid, Long contactid) {
-		User user = userService.getUserById(userid);
-		User contact = userService.getUserById(contactid);
+	public boolean deleteContact(Long userId, Long contactId) {
+		User user = userService.getUserById(userId);
+		User contact = userService.getUserById(contactId);
 		user.getContacts().remove(contact);
 		userService.persistObject(user);
 		return true;

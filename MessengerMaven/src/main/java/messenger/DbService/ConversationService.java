@@ -1,5 +1,10 @@
 package messenger.DbService;
 
+import java.util.List;
+import messenger.Domain.ChatConversation;
+import messenger.Domain.GroupConversation;
+import messenger.Domain.UserChat;
+
 public interface ConversationService {
 
 	/**
@@ -32,31 +37,11 @@ public interface ConversationService {
 	 */
 	public <T> void removeObject(T entity);
 	
-	//ManageContactList
-	public boolean addContact(int userid, int contactid);
-
-	public boolean deleteContact(int userid, int contactid);
-
-	public int[] getContactList(int userid);
+	public ChatConversation getChatById(Long chatId);
 	
-	//chatValidation
-	public boolean checkIfChatExists(int chat_id);
+	public GroupConversation getGroupChatById(Long chatId);
 	
-	//ManageChatgroups
-	public boolean addConversation(String name, byte[] picture) ;
+	public UserChat getUserChatById(Long chatId, Long userId);
 
-	public boolean deleteConveration(int chat_id) ;
-
-	public boolean updateConversation(int chat_id, String name, byte[] picture);
-
-	public String[][] getAllConversations(int user_id);
-
-	public boolean addUserToConversation(int chat_id, int user_id) ;
-
-	public boolean deleteUserFromConversation(int chat_id, int user_id);
-
-	public boolean grantAdminPermission(int chat_id, int user_id);
-
-	public boolean revokeAdminPermission(int chat_id, int user_id);
-
+	public List<UserChat> getUserChatsById(Long chatId);
 }

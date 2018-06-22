@@ -10,7 +10,7 @@ public interface ManageContactList {
 	 * @param contactid		id of the contact (a contact is also a user)
 	 * @return				true: the contact was added
 	 */
-	public boolean addContact(Long userid, Long contactid);
+	public boolean addContact(Long userId, Long contactId);
 	
 	/**
 	 * deletes a user from a user contact list
@@ -18,13 +18,13 @@ public interface ManageContactList {
 	 * @param contactid unique id of the contact (a contact is also a user)
 	 * @return true: contact succesful deleted false: deleting of the contact failed
 	 */
-	public boolean deleteContact(Long userid, Long contactid);
+	public boolean deleteContact(Long userId, Long contactId);
 	
 	/**
 	 * returns an array with all the contact of a user
 	 * @param userid unique id of the user
 	 * @return List of contact-ids belonging to the contacts of the user
 	 */
-	public List<Long> getContactList(Long userid);
+	public List<Long> getContactList(Long userId);
 	
 }

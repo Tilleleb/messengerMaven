@@ -1,9 +1,11 @@
 package messenger.DbServiceImpl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -11,12 +13,10 @@ import org.springframework.stereotype.Service;
 import messenger.DbService.ConversationService;
 import messenger.Domain.ChatConversation;
 import messenger.Domain.GroupConversation;
-import messenger.Domain.User;
 import messenger.Domain.UserChat;
 
 @Service
 @Scope("singleton")
-@Transactional
 public class ConversationServiceImpl implements ConversationService{
 
 	@PersistenceContext
@@ -40,87 +40,49 @@ public class ConversationServiceImpl implements ConversationService{
 	}
 
 	@Override
-	public boolean addContact(int userid, int contactid) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean deleteContact(int userid, int contactid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int[] getContactList(int userid) {
-		
-		return null;
-	}
-
-	@Override
-	public boolean checkIfChatExists(int chat_id) {
+	public ChatConversation getChatById(Long chatId) {
 		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
-		query.setParameter("chatId", chat_id);
-        ChatConversation tmpChat = query.getSingleResult();
-        if (tmpChat != null) {
-        	return true;
-        } 
-		return false;
+		query.setParameter("chatId", chatId);
+		 try{
+			 	return query.getSingleResult();
+			 } catch (NoResultException nre) {
+			    return null;
+			 }
+	}
+	
+	@Override
+	public List<UserChat> getUserChatsById(Long chatId) {
+		TypedQuery<UserChat> query = em.createQuery("SELECT chat FROM UserChat chat WHERE chat.chatId = :chatId", UserChat.class);
+		query.setParameter("chatId", chatId);
+		 try{
+			 	return query.getResultList();
+			 } catch (NoResultException nre) {
+			    return null;
+			 }
 	}
 
 	@Override
-	public boolean addConversation(String name, byte[] picture) {
-		GroupConversation groupChat = new GroupConversation();
-		groupChat.setName(name);
-		persistObject(groupChat);
-		return false;
-	}
-
-	@Override
-	public boolean deleteConveration(int chat_id) {
+	public GroupConversation getGroupChatById(Long chatId) {
 		TypedQuery<GroupConversation> query = em.createQuery("SELECT chat FROM GroupConversation chat WHERE chat.chatId = :chatId", GroupConversation.class);
-		query.setParameter("chatId", chat_id);
-		GroupConversation tmpChat = query.getSingleResult();
-        removeObject(tmpChat);
-		return true;
+		query.setParameter("chatId", chatId);
+		 try{
+			 	return query.getSingleResult();
+			 } catch (NoResultException nre) {
+			    return null;
+			 }
 	}
 
 	@Override
-	public boolean updateConversation(int chat_id, String name, byte[] picture) {
-		TypedQuery<GroupConversation> query = em.createQuery("SELECT chat FROM GroupConversation chat WHERE chat.chatId = :chatId", GroupConversation.class);
-		query.setParameter("chatId", chat_id);
-		GroupConversation tmpChat = query.getSingleResult();
-		tmpChat.setName(name);
-		return false;
+	public UserChat getUserChatById(Long chatId, Long userId) {
+		TypedQuery<UserChat> query = em.createQuery("SELECT chat FROM UserChat chat WHERE chat.ChatConversation.chatId = :chatId AND chat.User.userId = :userId", UserChat.class);
+		query.setParameter("chatId", chatId);
+		query.setParameter("userId", userId);
+		 try{
+			 	return query.getSingleResult();
+			 } catch (NoResultException nre) {
+			    return null;
+			 }
 	}
+	
 
-	@Override
-	public String[][] getAllConversations(int user_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean addUserToConversation(int chat_id, int user_id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteUserFromConversation(int chat_id, int user_id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean grantAdminPermission(int chat_id, int user_id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean revokeAdminPermission(int chat_id, int user_id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

@@ -15,7 +15,6 @@ import messenger.Domain.User;
 
 @Service
 @Scope("singleton")
-@Transactional
 public class MessageServiceImpl implements MessageService {
 
 	@PersistenceContext
@@ -39,7 +38,7 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public boolean sendMessage(String txt, int user_id, int chat_id) {
+	public boolean sendMessage(String txt, Long userId, Long chatId) {
 //		// TODO Auto-generated method stub
 //		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
 //		query.setParameter("chatId", chat_id);
@@ -53,7 +52,7 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public String[][] recieveMessage(int chat_id) {
+	public String[][] recieveMessage(Long chatId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

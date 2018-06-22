@@ -4,8 +4,6 @@ import java.util.List;
 
 import messenger.Domain.User;
 
-import java.util.AbstractMap.SimpleEntry;
-
 public interface UserService {
 
 	/**
