@@ -14,12 +14,12 @@ import messenger.Domain.User;
 public class GetUserImpl implements GetUser {
 
 	@Autowired
-    private UserService userservice;
+    private UserService userDbService;
 	
 	// return -1 wenn kein user gefunden
 	@Transactional
 	public Long getUser(String username) {
-		User user = userservice.getUserByName(username);
+		User user = userDbService.getUserByName(username);
 		if(user == null) {
 			return (long) -1;
 		}

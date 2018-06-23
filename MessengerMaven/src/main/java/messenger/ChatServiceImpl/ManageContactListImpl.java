@@ -16,23 +16,23 @@ import messenger.Domain.User;
 public class ManageContactListImpl implements ManageContactList {
 
 	@Autowired
-    private UserService userService; 
+    private UserService userDbService; 
 	
 	@Transactional
 	public boolean addContact(Long userId, Long contactId) {
-		User user = userService.getUserById(userId);
-		User contact = userService.getUserById(contactId);
+		User user = userDbService.getUserById(userId);
+		User contact = userDbService.getUserById(contactId);
 		user.getContacts().add(contact);
-		userService.persistObject(user);
+		userDbService.persistObject(user);
 		return true;
 	}
 
 	@Transactional
 	public boolean deleteContact(Long userId, Long contactId) {
-		User user = userService.getUserById(userId);
-		User contact = userService.getUserById(contactId);
+		User user = userDbService.getUserById(userId);
+		User contact = userDbService.getUserById(contactId);
 		user.getContacts().remove(contact);
-		userService.persistObject(user);
+		userDbService.persistObject(user);
 		return true;
 	}
 

@@ -18,17 +18,17 @@ import messenger.Domain.User;
 public class UserManagementImpl implements UserManagement {
 	 
     @Autowired
-    private UserService userservice;
+    private UserService userDbService;
   
 
     @Transactional
 	public int addUser(String username, String password) {
     	if (isOkUsername(username) && isOkPassword(password)) {
-    		if (userservice.getUserByName(username) == null) {
+    		if (userDbService.getUserByName(username) == null) {
     			User newuser = new User();
     			newuser.setUsername(username);
     			newuser.setPassword(password);
-    			userservice.persistObject(newuser);
+    			userDbService.persistObject(newuser);
     			return 0;
     		} else return 1;
     	}
@@ -37,21 +37,21 @@ public class UserManagementImpl implements UserManagement {
     
     @Transactional
 	public boolean deleteUser(Long userId) {
-		User user = userservice.getUserById(userId);
+		User user = userDbService.getUserById(userId);
 		if (user == null) {
 			return false;
 		} 
-		userservice.removeObject(user);
+		userDbService.removeObject(user);
 		return true;	
 	}
 
     @Transactional
 	public boolean updateUser(Long userId, String username, String password) {
-		User user = userservice.getUserById(userId);
+		User user = userDbService.getUserById(userId);
 		if (isOkUsername(username) && isOkPassword(password) && user != null) {
 			user.setPassword(password);
 			user.setUsername(username);
-			userservice.mergeObject(user);
+			userDbService.mergeObject(user);
 			return true;
 		}
 		return false;
@@ -66,7 +66,7 @@ public class UserManagementImpl implements UserManagement {
 	}
 
 	public List<String> getAllUsers() {
-		return userservice.getAllUsers();
+		return userDbService.getAllUsers();
 	}
 	
 	

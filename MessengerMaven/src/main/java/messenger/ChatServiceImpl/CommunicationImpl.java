@@ -11,9 +11,6 @@ import messenger.ChatService.Communication;
 @Service
 @Scope("singleton")
 public class CommunicationImpl implements Communication {
-	
-    @PersistenceContext
-	private EntityManager em;
 
 	public boolean sendMessage(String txt, Long userId, Long chatId) {
 		// TODO Auto-generated method stub

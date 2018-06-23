@@ -20,14 +20,14 @@ import messenger.Domain.UserChat;
 public class ManageChatGroupsImpl implements ManageChatGroups {
 
 	@Autowired
-	private ConversationService conversationService;
+	private ConversationService conversationDbService;
 
 	@Autowired
-	private UserService userService;
+	private UserService userDbService;
 
 	@Transactional
 	public boolean addConversation(Long userId) {
-		User user = userService.getUserById(userId);
+		User user = userDbService.getUserById(userId);
 		if (user == null)
 			return false;
 		ChatConversation newChatConversation = new ChatConversation();
@@ -35,15 +35,15 @@ public class ManageChatGroupsImpl implements ManageChatGroups {
 		newUserChat.setChat(newChatConversation);
 		newUserChat.setUser(user);
 		newUserChat.setAdmin(true);
-		conversationService.persistObject(newChatConversation);
-		conversationService.persistObject(newUserChat);
+		conversationDbService.persistObject(newChatConversation);
+		conversationDbService.persistObject(newUserChat);
 		return true;
 	}
 
 	@Transactional
 	public boolean addGroupConversation(Long userId, String name, byte[] picture) {
 		if (name == null) name = "NoName";
-		User user = userService.getUserById(userId);
+		User user = userDbService.getUserById(userId);
 		if (user == null)
 			return false;
 		ChatConversation newChatConversation = new ChatConversation();
@@ -54,29 +54,29 @@ public class ManageChatGroupsImpl implements ManageChatGroups {
 		GroupConversation newGroupConversation = new GroupConversation();
 		newGroupConversation.setChatId(newChatConversation.getChatId());
 		newGroupConversation.setName(name);
-		conversationService.persistObject(newChatConversation);
-		conversationService.persistObject(newUserChat);
-		conversationService.persistObject(newGroupConversation);
+		conversationDbService.persistObject(newChatConversation);
+		conversationDbService.persistObject(newUserChat);
+		conversationDbService.persistObject(newGroupConversation);
 		return true;
 	}
 
 	@Transactional
 	public boolean deleteConveration(Long chatId) {
-		ChatConversation chatConversation = conversationService.getChatById(chatId);
-		List<UserChat> userChatList = conversationService.getUserChatsById(chatId);
-		GroupConversation groupConversation = conversationService.getGroupChatById(chatId);
+		ChatConversation chatConversation = conversationDbService.getChatById(chatId);
+		List<UserChat> userChatList = conversationDbService.getUserChatsById(chatId);
+		GroupConversation groupConversation = conversationDbService.getGroupChatById(chatId);
 		if (chatConversation == null) return false;
-		if (groupConversation != null) conversationService.removeObject(groupConversation);
-		for (UserChat userChat : userChatList) conversationService.removeObject(userChat);
-		conversationService.removeObject(chatConversation);
+		if (groupConversation != null) conversationDbService.removeObject(groupConversation);
+		for (UserChat userChat : userChatList) conversationDbService.removeObject(userChat);
+		conversationDbService.removeObject(chatConversation);
 		return true;
 	}
 
 	@Transactional
 	public boolean updateConversation(Long chatId, String name, byte[] picture) {
-		GroupConversation groupConversation = conversationService.getGroupChatById(chatId);
+		GroupConversation groupConversation = conversationDbService.getGroupChatById(chatId);
 		groupConversation.setName(name);
-		conversationService.mergeObject(groupConversation);
+		conversationDbService.mergeObject(groupConversation);
 		return true;
 	}
 
@@ -87,42 +87,42 @@ public class ManageChatGroupsImpl implements ManageChatGroups {
 
 	@Transactional
 	public boolean addUserToConversation(Long chatId, Long userId) {
-		ChatConversation chatConversation = conversationService.getChatById(chatId);
+		ChatConversation chatConversation = conversationDbService.getChatById(chatId);
 		if (chatConversation == null) return false;
-		User user = userService.getUserById(userId);
+		User user = userDbService.getUserById(userId);
 		if (user == null) return false;
 		UserChat newUserChat = new UserChat();
 		newUserChat.setChat(chatConversation);
 		newUserChat.setUser(user);
-		conversationService.persistObject(newUserChat);
+		conversationDbService.persistObject(newUserChat);
 		return true;
 	}
 
 	@Transactional
 	public boolean deleteUserFromConversation(Long chatId, Long userId) {
 		// TODO: Gucken obs der letzt user ist und dann den chat mitlöschen oder exception
-		UserChat userChat = conversationService.getUserChatById(chatId, userId);
+		UserChat userChat = conversationDbService.getUserChatById(chatId, userId);
 		if (userChat == null) return false;
-		conversationService.removeObject(userChat);
+		conversationDbService.removeObject(userChat);
 		return true;
 	}
 
 	@Transactional
 	public boolean grantAdminPermission(Long chatId, Long userId) {
-		UserChat userChat = conversationService.getUserChatById(chatId, userId);
+		UserChat userChat = conversationDbService.getUserChatById(chatId, userId);
 		if (userChat == null) return false;
 		userChat.setAdmin(true);
-		conversationService.mergeObject(userChat);
+		conversationDbService.mergeObject(userChat);
 		return true;
 	}
 
 	@Transactional
 	public boolean revokeAdminPermission(Long chatId, Long userId) {
 		// TODO: Gucken obs der letzte Admin war... Der letzte Admin darf nicht gelöscht werden
-		UserChat userChat = conversationService.getUserChatById(chatId, userId);
+		UserChat userChat = conversationDbService.getUserChatById(chatId, userId);
 		if (userChat == null) return false;
 		userChat.setAdmin(false);
-		conversationService.mergeObject(userChat);
+		conversationDbService.mergeObject(userChat);
 		return true;
 	}
 
