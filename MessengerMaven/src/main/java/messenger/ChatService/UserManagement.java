@@ -1,6 +1,5 @@
 package messenger.ChatService;
 
-import java.util.AbstractMap;
 import java.util.List;
 
 public interface UserManagement {
