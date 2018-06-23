@@ -17,9 +17,7 @@ public class UserValidationImpl implements UserValidation {
 
 	@Transactional
 	public boolean checkIfUserExists(Long userId){
-		if(userDbService.getUserById(userId) == null){
-			return false;
-		}
+		if(userDbService.getUserById(userId) == null) return false;
 		return true;
 	}
 

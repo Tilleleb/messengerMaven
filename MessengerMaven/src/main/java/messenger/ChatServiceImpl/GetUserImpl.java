@@ -20,9 +20,7 @@ public class GetUserImpl implements GetUser {
 	@Transactional
 	public Long getUser(String username) {
 		User user = userDbService.getUserByName(username);
-		if(user == null) {
-			return (long) -1;
-		}
+		if(user == null) return -1l;
 		return user.getUserId();
 	}
 
