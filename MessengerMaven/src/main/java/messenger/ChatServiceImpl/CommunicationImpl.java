@@ -30,6 +30,7 @@ public class CommunicationImpl implements Communication {
 
 	@Transactional
 	public boolean sendMessage(String txt, Long userId, Long chatId) {
+		txt = txt.replaceAll(";", " ");
 		if (txt == null || txt.length() < 1) return false;
 		ChatConversation chatConversation = conversationDbService.getChatById(chatId);
 		User userSender = userDbService.getUserById(userId);

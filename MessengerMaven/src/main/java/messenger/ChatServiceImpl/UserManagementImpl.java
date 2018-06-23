@@ -74,6 +74,7 @@ public class UserManagementImpl implements UserManagement {
 		if (username == null || username.length() < 1 || username.length() > 20) {
     		return false;
     	}
+		if (username.contains(";")) return false;
 		return true;
 	}
 	
@@ -81,6 +82,7 @@ public class UserManagementImpl implements UserManagement {
 		if (password == null || password.length() < 1 || password.length() > 20) {
     		return false;
     	}
+		if (password.contains(";")) return false;
 		return true;
 	}
 
