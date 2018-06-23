@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import messenger.DbService.ConversationService;
 import messenger.Domain.ChatConversation;
 import messenger.Domain.GroupConversation;
-import messenger.Domain.User;
 import messenger.Domain.UserChat;
 
 @Service

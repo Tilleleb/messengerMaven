@@ -14,7 +14,6 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import messenger.DbService.UserService;
 import messenger.Domain.User;

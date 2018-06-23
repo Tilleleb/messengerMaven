@@ -1,6 +1,7 @@
 package messenger.ChatServiceImpl;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -16,8 +17,8 @@ import messenger.Domain.User;
 public class ManageContactListImpl implements ManageContactList {
 
 	@Autowired
-    private UserService userDbService; 
-	
+	private UserService userDbService;
+
 	@Transactional
 	public boolean addContact(Long userId, Long contactId) {
 		User user = userDbService.getUserById(userId);
@@ -36,9 +37,13 @@ public class ManageContactListImpl implements ManageContactList {
 		return true;
 	}
 
-	public List<Long> getContactList(Long userid) {
-
-		return null;
+	public List<Long> getContactList(Long userId) {
+		User user = userDbService.getUserById(userId);
+		List<Long> contactIdList = new ArrayList<Long>();
+		if (user == null) return contactIdList;
+		List<User> contactList = user.getContacts();
+		for (User contact : contactList) contactIdList.add(contact.getUserId());
+		return contactIdList;
 	}
 
 }
