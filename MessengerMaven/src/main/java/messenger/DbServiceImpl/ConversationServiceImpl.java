@@ -1,5 +1,6 @@
 package messenger.DbServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import messenger.DbService.ConversationService;
 import messenger.Domain.ChatConversation;
 import messenger.Domain.GroupConversation;
+import messenger.Domain.User;
 import messenger.Domain.UserChat;
 
 @Service
@@ -82,6 +84,21 @@ public class ConversationServiceImpl implements ConversationService{
 			 } catch (NoResultException nre) {
 			    return null;
 			 }
+	}
+
+	@Override
+	public List<Long> getAllConversations(Long userId) {
+		TypedQuery<UserChat> query = em.createQuery("SELECT userChat FROM UserChat userChat WHERE userChat.User.userId = :userId", UserChat.class);
+		query.setParameter("userId", userId);
+		List<UserChat> userChatList = query.getResultList();
+		// TODO: leere liste: null oder leere liste zurück?
+		//if (userChatList.isEmpty()) return null;
+		List<Long> allConversations = new ArrayList<Long>();
+		for( UserChat userChat: userChatList )
+		{
+			allConversations.add(userChat.getChat().getChatId());
+		}
+        return allConversations;
 	}
 	
 

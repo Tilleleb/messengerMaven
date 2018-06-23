@@ -44,4 +44,6 @@ public interface ConversationService {
 	public UserChat getUserChatById(Long chatId, Long userId);
 
 	public List<UserChat> getUserChatsById(Long chatId);
+	
+	public List<Long> getAllConversations(Long userId);
 }

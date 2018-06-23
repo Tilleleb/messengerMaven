@@ -41,7 +41,7 @@ public interface ManageChatGroups {
 	
 	/**
 	 * @param user_id the user_id of the user who wants to view his chats
-	 * @return returns a two dimensional array with all the informations of conversations belonging to a user
+	 * @return returns a two dimensional array with all the informations of conversations belonging to a user or return null if no chats found
 	 */
 	public List<Long> getAllConversations(Long userId);
 	

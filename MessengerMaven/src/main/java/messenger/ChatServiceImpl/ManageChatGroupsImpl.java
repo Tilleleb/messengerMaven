@@ -81,8 +81,7 @@ public class ManageChatGroupsImpl implements ManageChatGroups {
 	}
 
 	public List<Long> getAllConversations(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return conversationDbService.getAllConversations(userId);
 	}
 
 	@Transactional
