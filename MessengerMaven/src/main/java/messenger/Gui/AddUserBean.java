@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import messenger.ChatService.UserManagement;
 
-@ManagedBean
 @Component
 @Scope("singleton")
 public class AddUserBean implements Serializable{
@@ -21,18 +20,12 @@ public class AddUserBean implements Serializable{
 	
 	private String password;
 	
-	//@Autowired
+	@Autowired
 	private UserBean userBean;
 
 	@Autowired
 	private UserManagement userManagement;
 	
-	
-	 @PostConstruct
-	    public void init() {
-	    	
-	    	//userList = userManagement.getAllUsers();
-	    }
 
 	public String getUsername() {
 		return username;

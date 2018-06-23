@@ -5,7 +5,7 @@
   <groupId>Interface</groupId>
   <artifactId>MessengerMaven</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>MessengerMaven</name>
   <url>http://maven.apache.org</url>
@@ -41,6 +41,12 @@
 		<groupId>com.sun.faces</groupId>
 		<artifactId>jsf-impl</artifactId>
 		<version>2.2.17</version>
+	</dependency>
+	
+	<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
 	</dependency>
 
 	<!-- Spring MVC -->

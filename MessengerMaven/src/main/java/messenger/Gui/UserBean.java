@@ -9,20 +9,22 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ScopedProxyMode;
 
 import messenger.ChatService.GetUser;
 import messenger.ChatService.UserManagement;
+import messenger.ChatServiceImpl.UserManagementImpl;
 
-@ManagedBean
-@SessionScoped
-public class UserBean implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Component
+@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class UserBean implements Serializable{
 
-	
 	@Autowired
     private UserManagement userManagement;
     
-    @Autowired
+	@Autowired
     private GetUser getUser;
     
     private List<String> userList = new ArrayList<String>();
@@ -35,16 +37,17 @@ public class UserBean implements Serializable {
     
     @PostConstruct
     public void init() {
-    	userList.add("Peter");
-    	userList.add("Bob");
-    	//userList = userManagement.getAllUsers();
+    	//userList.add("Peter");
+    	//userList.add("Bob");
+    	userList = userManagement.getAllUsers();
+    	//userList.add(String.valueOf(getUser.getUser("user2")));
     }
 
 	public UserManagement getUserManagement() {
 		return userManagement;
 	}
 
-	public void setUserManagement(UserManagement userManagement) {
+	public void setUserManagement(UserManagementImpl userManagement) {
 		this.userManagement = userManagement;
 	}
 
@@ -82,10 +85,20 @@ public class UserBean implements Serializable {
 	}
     
     public String save(){
-    	userId = (long) 2;
-    	//userId = (long) getUser.getUser(username);
+    	userId = getUser.getUser(username);
     	isUserSet = true;
     	return "success";
+    }
+    
+    public String deleteUser(){
+    	userId = getUser.getUser(username);
+    	userManagement.deleteUser(userId);
+    	this.init();
+    	this.logout();
+    	isUserSet = false;
+    	username = "";
+    	userId = null;
+    	return "successDelete";
     }
     
     public String logout(){

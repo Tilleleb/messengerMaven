@@ -11,20 +11,21 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import messenger.ChatService.ManageChatGroups;
 
 
 
-@ManagedBean
-@SessionScoped
+@Component
+@Scope("singleton")
 public class ChatListBean implements Serializable{
-	private static final long serialVersionUID = 1L;
 
 	@Autowired
     private ManageChatGroups manageChatGroups;
     
-    @ManagedProperty("#{userBean}")
+	@Autowired
     private UserBean userBean;
     
     private String[][] arrayChats;
@@ -33,14 +34,14 @@ public class ChatListBean implements Serializable{
     
     private String chatId;
     
-    private List<String> chatList = new ArrayList<String>();
+    private List<Long> chatList = new ArrayList<Long>();
     
     
     @PostConstruct
     private void init() {
-    	chatList.add("ChatA");
-    	chatList.add("ChatB");
-        
+        chatList.add(3L);
+        chatList.add(4L);
+    	//chatList = manageChatGroups.getAllConversations(6L);
     }
 
 
@@ -74,12 +75,12 @@ public class ChatListBean implements Serializable{
 	}
 
 
-	public List<String> getChatList() {
+	public List<Long> getChatList() {
 		return chatList;
 	}
 
 
-	public void setChatList(List<String> chatList) {
+	public void setChatList(List<Long> chatList) {
 		this.chatList = chatList;
 	}
     

@@ -20,13 +20,13 @@
 
 			<p></p>
 			<p:messages id="errorMessages" style="color:red;margin:8px;" />
-			<p:panel header="Waehlen Sie einen Chat #{userBean.username}"
+			<p:panel header="Waehlen Sie einen Chat #{userBean.username} (ID=#{userBean.userId})"
 				style="margin-bottom:10px;">
 
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel for="chat" value="chat: " />
 					<p:selectOneMenu id="chat" value="#{chatListBean.chat}"
-						style="width:150px">
+						style="width:150px" required="true">
 						<f:selectItem itemLabel="Select Chat" itemValue=""
 							noSelectionOption="true" />
 						<f:selectItems value="#{chatListBean.chatList}" var="chat"

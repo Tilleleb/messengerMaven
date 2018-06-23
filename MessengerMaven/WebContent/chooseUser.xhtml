@@ -7,11 +7,15 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:param name="title" value="BugTracker - Nutzer" />
+	<ui:param name="title" value="Messenger - User" />
 
 	<ui:define name="content">
-	<p:button value="User hinzufügen " id="contact" outcome="addUser" icon="ui-icon-circle-plus"  />
 		<h:form>
+		
+		<p:button value="User hinzufügen " id="addContact"
+							 outcome="addUser" icon="ui-icon-circle-plus"  />
+		
+		
 			<p:messages id="errorMessages" style="color:red;margin:8px;" />
 			<p:panel header="Waehlen Sie einen Nutzer"
 				style="margin-bottom:10px;">
@@ -31,6 +35,8 @@
 
 				<p:commandButton value="Einloggen" action="#{userBean.save}"
 					update="errorMessages" icon="ui-icon-check" />
+				<p:commandButton value="Entfernen" action="#{userBean.deleteUser}"
+					update="errorMessages" icon="ui-icon-arrowthick-1-w" />
 			</p:panel>
 		</h:form>
 		
