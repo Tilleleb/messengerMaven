@@ -58,7 +58,6 @@ public class UserManagementImpl implements UserManagement {
 	}
 
 	public int loginUser(String username, String password) {
-		
 	//	if (isOkUsername(username) && isOkPassword(password)) {
 	//		return userservice.loginUser(username, password);
 	//	}
