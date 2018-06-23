@@ -1,5 +1,7 @@
 package messenger.DbService;
 
+import java.util.List;
+
 public interface MessageService {
 
 	/**
@@ -35,6 +37,6 @@ public interface MessageService {
 	
 	//Communication
 
-	public String[][] recieveMessage(Long chatId);
+	public List<String> recieveMessage(Long chatId);
 
 }

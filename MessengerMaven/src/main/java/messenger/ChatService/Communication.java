@@ -1,5 +1,7 @@
 package messenger.ChatService;
 
+import java.util.List;
+
 public interface Communication {
 	
 	/**
@@ -15,6 +17,6 @@ public interface Communication {
 	 * @param chat_id id of the chat
 	 * @return String-Array with all Messages belonging to the chat
 	 */
-	public String[][] recieveMessage(Long chatId);
+	public List<String> recieveMessage(Long chatId);
 
 }

@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService, Serializable {
 	
 	//GETUSER
 	public User getUserById(Long userId) {
-		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.userId = :userid", User.class);
-		query.setParameter("userid", userId);
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.userId = :userId", User.class);
+		query.setParameter("userId", userId);
 		 try{
 			 	return query.getSingleResult();
 			 } catch (NoResultException nre) {

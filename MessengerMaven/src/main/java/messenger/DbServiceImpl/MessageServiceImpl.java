@@ -1,15 +1,17 @@
 package messenger.DbServiceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import messenger.DbService.MessageService;
-import messenger.Domain.ChatConversation;
 import messenger.Domain.Message;
-import messenger.Domain.User;
 
 @Service
 @Scope("singleton")
@@ -36,8 +38,15 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public String[][] recieveMessage(Long chatId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> recieveMessage(Long chatId) {
+		TypedQuery<Message> query = em.createQuery("SELECT message FROM Message message WHERE message.chat.chatId = :chatId", Message.class);
+		query.setParameter("chatId", chatId);
+		List<Message> messageList = query.getResultList();
+		List<String> messages = new ArrayList<String>();
+		for( Message message: messageList )
+		{
+			messages.add(message.getSender().getUsername() + ";" + message.getTimestamp() + ";" + message.getText());
+		}
+        return messages;
 	}
 }

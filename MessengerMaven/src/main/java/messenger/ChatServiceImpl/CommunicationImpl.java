@@ -1,5 +1,7 @@
 package messenger.ChatServiceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -39,9 +41,8 @@ public class CommunicationImpl implements Communication {
 		return true;
 	}
 
-	public String[][] recieveMessage(Long chatId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> recieveMessage(Long chatId) {
+		return messageDbService.recieveMessage(chatId);
 	}
 
 }
