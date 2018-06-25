@@ -13,9 +13,9 @@
 		<h:form id="form">
 
 			<p:button value="Chat hinzufügen " id="newChat"
-							 outcome="add" icon="ui-icon-circle-plus"  />
+							 action="#{contactsBean.loadContactList}" icon="ui-icon-circle-plus"  />
 							 
-			<p:button value="Kontakte anzeigen " id="contact"
+			<p:button value="Kontakte anzeigen " id="contact" action="#{contactsBean.loadContactList}"
 							 outcome="showContact" icon="ui-icon-circle-plus"  />
 
 			<p></p>

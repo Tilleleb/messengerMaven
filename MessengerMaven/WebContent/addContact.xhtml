@@ -23,7 +23,7 @@
 				<p:panelGrid id="fehlerGrid" columns="2" styleClass="noborderpanelgrid">
 					<p:outputLabel for="contactName" value="Kontaktname" />
 					<p:inputText required="true" maxlength="64" id="contactName"
-						value="#{addFehlerBean.fehler.bezeichnung}" />
+						value="#{contactsBean.contactName}" />
 					
 					<p></p>
 					<h:outputText id="display" />
@@ -31,7 +31,7 @@
 					<p></p>
 					<p:panelGrid colums="2">
 					
-						<p:commandButton id="save" action="#{addFehlerBean.speichern}"
+						<p:commandButton id="save" action="#{contactsBean.addContact}"
 							value="Speichern" icon="ui-icon-disk" update="@form" />
 			
 						<p:button id="cancel" 

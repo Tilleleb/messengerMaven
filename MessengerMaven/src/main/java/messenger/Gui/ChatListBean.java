@@ -19,7 +19,7 @@ import messenger.ChatService.ManageChatGroups;
 
 
 @Component
-@Scope("singleton")
+@Scope("prototype")
 public class ChatListBean implements Serializable{
 
 	@Autowired
