@@ -1,5 +1,6 @@
 package messenger.ChatServiceImpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import messenger.Domain.UserChat;
 
 @Service
 @Scope("singleton")
-public class ManageChatGroupsImpl implements ManageChatGroups {
+public class ManageChatGroupsImpl implements ManageChatGroups, Serializable {
 
 	@Autowired
 	private ConversationService conversationDbService;

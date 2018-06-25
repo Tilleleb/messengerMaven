@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 import messenger.ChatService.UserManagement;
@@ -15,7 +16,7 @@ import messenger.Domain.User;
 
 @Service
 @Scope("singleton")
-public class UserManagementImpl implements UserManagement {
+public class UserManagementImpl implements UserManagement, Serializable {
 	 
     @Autowired
     private UserService userDbService;
@@ -57,6 +58,7 @@ public class UserManagementImpl implements UserManagement {
 		return false;
 	}
 
+    @Transactional
 	public int loginUser(String username, String password) {
 	//	if (isOkUsername(username) && isOkPassword(password)) {
 	//		return userservice.loginUser(username, password);
@@ -64,6 +66,7 @@ public class UserManagementImpl implements UserManagement {
 		return 0;
 	}
 
+	@Transactional
 	public List<String> getAllUsers() {
 		return userDbService.getAllUsers();
 	}

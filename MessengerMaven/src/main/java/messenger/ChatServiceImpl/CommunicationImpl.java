@@ -1,5 +1,6 @@
 package messenger.ChatServiceImpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import messenger.Domain.User;
 
 @Service
 @Scope("singleton")
-public class CommunicationImpl implements Communication {
+public class CommunicationImpl implements Communication, Serializable {
 	
 	@Autowired
 	private UserService userDbService;
@@ -42,8 +43,9 @@ public class CommunicationImpl implements Communication {
 		return true;
 	}
 
+	@Transactional
 	public List<String> recieveMessage(Long chatId) {
-		return messageDbService.recieveMessage(chatId);
+		return messageDbService.receiveMessage(chatId);
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
@@ -27,7 +28,7 @@ public class User implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "CONTACTS",
     	joinColumns = @JoinColumn(name = "USER_ID"),
     	inverseJoinColumns = @JoinColumn(name = "CONTACT_ID")
@@ -54,7 +55,7 @@ public class User implements Serializable {
 	}
 
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "CONTACTS",
     	joinColumns = @JoinColumn(name = "CONTACT_ID"),
     	inverseJoinColumns = @JoinColumn(name = "USER_ID")

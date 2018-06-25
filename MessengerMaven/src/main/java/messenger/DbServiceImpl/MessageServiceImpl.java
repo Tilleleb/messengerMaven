@@ -37,8 +37,7 @@ public class MessageServiceImpl implements MessageService {
 		em.merge(entity);
 	}
 
-	@Override
-	public List<String> recieveMessage(Long chatId) {
+	public List<String> receiveMessage(Long chatId) {
 		TypedQuery<Message> query = em.createQuery("SELECT message FROM Message message WHERE message.chat.chatId = :chatId", Message.class);
 		query.setParameter("chatId", chatId);
 		List<Message> messageList = query.getResultList();

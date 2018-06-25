@@ -40,7 +40,6 @@ public class ConversationServiceImpl implements ConversationService{
 		em.merge(entity);
 	}
 
-	@Override
 	public ChatConversation getChatById(Long chatId) {
 		TypedQuery<ChatConversation> query = em.createQuery("SELECT chat FROM ChatConversation chat WHERE chat.chatId = :chatId", ChatConversation.class);
 		query.setParameter("chatId", chatId);
@@ -51,7 +50,6 @@ public class ConversationServiceImpl implements ConversationService{
 			 }
 	}
 	
-	@Override
 	public List<UserChat> getUserChatsById(Long chatId) {
 		TypedQuery<UserChat> query = em.createQuery("SELECT chat FROM UserChat chat WHERE chat.chatId = :chatId", UserChat.class);
 		query.setParameter("chatId", chatId);
@@ -62,7 +60,7 @@ public class ConversationServiceImpl implements ConversationService{
 			 }
 	}
 
-	@Override
+
 	public GroupConversation getGroupChatById(Long chatId) {
 		TypedQuery<GroupConversation> query = em.createQuery("SELECT chat FROM GroupConversation chat WHERE chat.chatId = :chatId", GroupConversation.class);
 		query.setParameter("chatId", chatId);
@@ -73,7 +71,6 @@ public class ConversationServiceImpl implements ConversationService{
 			 }
 	}
 
-	@Override
 	public UserChat getUserChatById(Long chatId, Long userId) {
 		TypedQuery<UserChat> query = em.createQuery("SELECT chat FROM UserChat chat WHERE chat.ChatConversation.chatId = :chatId AND chat.User.userId = :userId", UserChat.class);
 		query.setParameter("chatId", chatId);
@@ -85,7 +82,6 @@ public class ConversationServiceImpl implements ConversationService{
 			 }
 	}
 
-	@Override
 	public List<Long> getAllConversations(Long userId) {
 		TypedQuery<UserChat> query = em.createQuery("SELECT userChat FROM UserChat userChat WHERE userChat.User.userId = :userId", UserChat.class);
 		query.setParameter("userId", userId);

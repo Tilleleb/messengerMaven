@@ -23,8 +23,8 @@ public class CommunicationTest {
 	public void testForAllOkSend() {
 		// 1. Arrange
 		String text = "text";
-		int user = 1;
-		int chat = 1;
+		Long user = 1L;
+		Long chat = 1L;
 
 		// 2. Act
 		boolean bool = service.sendMessage(text, user, chat);
@@ -35,17 +35,17 @@ public class CommunicationTest {
 	
 	@Test
 	public void testForChatNotOkSend() {
-		Assert.assertFalse(service.sendMessage("text", 1, -1));
+		Assert.assertFalse(service.sendMessage("text", 1L, -1L));
 	}
 	
 	@Test
 	public void testForUserNotOkSend() {
-		Assert.assertFalse(service.sendMessage("text", -1, 1));
+		Assert.assertFalse(service.sendMessage("text", -1L, 1L));
 	}
 	
 	@Test
 	public void testForTextEmptySend() {
-		Assert.assertFalse(service.sendMessage("", 1, 1));
+		Assert.assertFalse(service.sendMessage("", 1L, 1L));
 	}
 	
 	
@@ -53,11 +53,11 @@ public class CommunicationTest {
 	// --------------------------------------------------------------
 	@Test
 	public void testForAllOkReceive() {
-		Assert.assertNotNull(service.recieveMessage(1));
+		Assert.assertNotNull(service.recieveMessage(1L));
 	}
 	
 	@Test
 	public void testForUserNotOkReceive() {
-		Assert.assertNull(service.recieveMessage(0));
+		Assert.assertNull(service.recieveMessage(0L));
 	}
 }

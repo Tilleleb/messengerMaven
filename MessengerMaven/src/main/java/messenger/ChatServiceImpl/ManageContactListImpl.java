@@ -1,6 +1,7 @@
 package messenger.ChatServiceImpl;
 
 import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import messenger.Domain.User;
 
 @Service
 @Scope("singleton")
-public class ManageContactListImpl implements ManageContactList {
+public class ManageContactListImpl implements ManageContactList, Serializable {
 
 	@Autowired
 	private UserService userDbService;
@@ -37,6 +38,7 @@ public class ManageContactListImpl implements ManageContactList {
 		return true;
 	}
 
+	@Transactional
 	public List<Long> getContactList(Long userId) {
 		User user = userDbService.getUserById(userId);
 		List<Long> contactIdList = new ArrayList<Long>();

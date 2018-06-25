@@ -37,6 +37,6 @@ public interface MessageService {
 	
 	//Communication
 
-	public List<String> recieveMessage(Long chatId);
+	public List<String> receiveMessage(Long chatId);
 
 }

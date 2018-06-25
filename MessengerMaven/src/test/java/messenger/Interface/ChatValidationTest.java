@@ -21,24 +21,24 @@ public class ChatValidationTest {
 
 	@Test
 	public void testIsZero() {
-		testForFalse(0);
+		testForFalse(0L);
 	}
 	
 	@Test
 	public void testChatExist() {
-		testForTrue(1);
+		testForTrue(1L);
 	}
 	
 	@Test
 	public void testChatDontExist() {
-		testForFalse(99);
+		testForFalse(99L);
 	}
 		
-	public void testForTrue(int testValue) {
+	public void testForTrue(Long testValue) {
 		Assert.assertTrue(service.checkIfChatExists(testValue));
 	}
 	
-	public void testForFalse(int testValue) {
+	public void testForFalse(Long testValue) {
 		Assert.assertFalse(service.checkIfChatExists(testValue));
 	}
 }
