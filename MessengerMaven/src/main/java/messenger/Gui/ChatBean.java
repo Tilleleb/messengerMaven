@@ -13,35 +13,68 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import messenger.ChatService.Communication;
+import messenger.ChatService.ManageChatGroups;
 
 
 @ManagedBean
 @SessionScoped
 public class ChatBean implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	//@ManagedProperty("#{userBean}")
+	@Autowired
+	private UserBean userBean;
+    
+//	@ManagedProperty("#{chatBeanList}")
+//    private ChatListBean chatBeanList;
 
-	@ManagedProperty("#{userBean}")
-    private UserBean userBean;
-    
-	@ManagedProperty("#{chatBeanList}")
-    private ChatListBean chatBeanList;
-    
-	@ManagedProperty("#{communication}")
+	@Autowired
+	private ManageChatGroups manageChatGroups;
+	
+	@Autowired
     private Communication communication;
     
     private String[][] arrayMessages;
     
     private String message;
     
-    private List<String> messageList = new ArrayList<String>();
+    private Long chatId;
+
+	private List<Long> chatList = new ArrayList<Long>();
     
+    private List<String> messageList = new ArrayList<String>();
     
     @PostConstruct
     private void init() {
-    	//communication.recieveMessage(chatBeanList.getChatId());
+    	//chatList = manageChatGroups.getAllConversations(userBean.getUserId());
     }
+    
+    public ManageChatGroups getManageChatGroups() {
+		return manageChatGroups;
+	}
+
+	public void setManageChatGroups(ManageChatGroups manageChatGroups) {
+		this.manageChatGroups = manageChatGroups;
+	}
+
+	public Long getChatId() {
+		return chatId;
+	}
+
+	public void setChatId(Long chatId) {
+		this.chatId = chatId;
+	}
+
+	public List<Long> getChatList() {
+		return chatList;
+	}
+
+	public void setChatList(List<Long> chatList) {
+		this.chatList = chatList;
+	}
 
 	public UserBean getUserBean() {
 		return userBean;
@@ -50,16 +83,6 @@ public class ChatBean implements Serializable{
 
 	public void setUserBean(UserBean userBean) {
 		this.userBean = userBean;
-	}
-
-
-	public ChatListBean getChatBeanList() {
-		return chatBeanList;
-	}
-
-
-	public void setChatBeanList(ChatListBean chatBeanList) {
-		this.chatBeanList = chatBeanList;
 	}
 
 
@@ -102,6 +125,7 @@ public class ChatBean implements Serializable{
 		this.messageList = messageList;
 	}
     
+	
 	public void sendMessage(){
 		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 		Date date = new Date();
@@ -109,5 +133,12 @@ public class ChatBean implements Serializable{
 		messageList.add(userBean.getUsername() + " - " + dateFormat.format(date) + " - " + message);
 		this.message = "";
 	}
+	
+	public List<Long> getAllConversations(Long userId) {
+		return manageChatGroups.getAllConversations(userId);
+	}
 
+    public String showChat() {
+        return "success";
+    }
 }

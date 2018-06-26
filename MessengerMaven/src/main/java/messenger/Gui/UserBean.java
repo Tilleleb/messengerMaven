@@ -37,10 +37,7 @@ public class UserBean implements Serializable{
     
     @PostConstruct
     public void init() {
-    	//userList.add("Peter");
-    	//userList.add("Bob");
     	userList = userManagement.getAllUsers();
-    	//userList.add(String.valueOf(getUser.getUser("user2")));
     }
 
 	public UserManagement getUserManagement() {

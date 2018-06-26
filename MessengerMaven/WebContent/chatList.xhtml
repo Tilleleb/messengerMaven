@@ -25,18 +25,18 @@
 
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel for="chat" value="chat: " />
-					<p:selectOneMenu id="chat" value="#{chatListBean.chat}"
+					<p:selectOneMenu id="chat" value="#{chatBean.chatId}"
 						style="width:150px" required="true">
 						<f:selectItem itemLabel="Select Chat" itemValue=""
 							noSelectionOption="true" />
-						<f:selectItems value="#{chatListBean.chatList}" var="chat"
+						<f:selectItems value="#{chatBean.chatList}" var="chat"
 							itemLabel="#{chat}" itemValue="#{chat}" />
 					</p:selectOneMenu>
 				</h:panelGrid>
 
 				<p:separator />
 
-				<p:commandButton value="Chat öffnen" action="#{chatListBean.showChat}"
+				<p:commandButton value="Chat öffnen" action="#{chatBean.showChat}"
 					update="errorMessages" icon="ui-icon-check" />
 			</p:panel>
 		</h:form>
