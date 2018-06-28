@@ -8,5 +8,7 @@ public interface GetUser {
 	 * @return user-id that belongs to the username
 	 */
 	public Long getUser(String username);
+	
+	public String getUserName(Long userId);
 
 }

@@ -72,7 +72,7 @@ public class ConversationServiceImpl implements ConversationService{
 	}
 
 	public UserChat getUserChatById(Long chatId, Long userId) {
-		TypedQuery<UserChat> query = em.createQuery("SELECT chat FROM UserChat chat WHERE chat.ChatConversation.chatId = :chatId AND chat.User.userId = :userId", UserChat.class);
+		TypedQuery<UserChat> query = em.createQuery("SELECT userChat FROM UserChat userChat WHERE chat.chat.chatId = :chatId AND chat.User.userId = :userId", UserChat.class);
 		query.setParameter("chatId", chatId);
 		query.setParameter("userId", userId);
 		 try{
@@ -83,7 +83,7 @@ public class ConversationServiceImpl implements ConversationService{
 	}
 
 	public List<Long> getAllConversations(Long userId) {
-		TypedQuery<UserChat> query = em.createQuery("SELECT userChat FROM UserChat userChat WHERE userChat.User.userId = :userId", UserChat.class);
+		TypedQuery<UserChat> query = em.createQuery("SELECT userChat FROM UserChat userChat WHERE userChat.user.userId = :userId", UserChat.class);
 		query.setParameter("userId", userId);
 		List<UserChat> userChatList = query.getResultList();
 		// TODO: leere liste: null oder leere liste zurück?

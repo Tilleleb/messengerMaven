@@ -26,4 +26,11 @@ public class GetUserImpl implements GetUser, Serializable {
 		return user.getUserId();
 	}
 
+	@Override
+	public String getUserName(Long userId) {
+		User user = userDbService.getUserById(userId);
+		if(user == null) return null;
+		return user.getUsername();
+	}
+
 }

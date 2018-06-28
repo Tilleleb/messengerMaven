@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService, Serializable {
 	
 	
 	public User getUserByName(String username) {
-		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.username = :username", User.class);
+		TypedQuery<User> query = em.createQuery("SELECT user FROM User user WHERE user.username like :username", User.class);
 		query.setParameter("username", username);
 		 try{
 			 	return query.getSingleResult();
