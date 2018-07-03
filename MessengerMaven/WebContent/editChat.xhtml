@@ -11,26 +11,28 @@
 
 	<ui:define name="content">
 		<h2>
-			<h:outputText value="Gruppenchat" />
+			<h:outputText value="Chat anpassen" />
 		</h2>
 		
 		<h:form id="form">
 		<p:messages id="errorMessages" style="color:red;margin:8px;" />
 			<p:panelGrid id="borderGrid" columns="1" layout="grid">
 			   	<f:facet name="header">
-                    <h:outputText value="Chat"/>
+                    <h:outputText value="Chat anpassen"/>
                 </f:facet>
                 
                 <p:spacer height="10" />
                 
                 <p:panelGrid id="borderNameGrid" columns="1">
 				   	<f:facet name="header">
-	                    <h:outputText value="Chatname"/>
+	                    <h:outputText value="Chatname anpassen"/>
 	                </f:facet>
 	                
 					<p:panelGrid id="editChatGrid" columns="3" styleClass="noborderpanelgrid">
-						<p:outputLabel value="Chatname" />
-						<p:outputLabel value="Dummyname in der Gui" />
+						<p:outputLabel for="chatname" value="Chatname" />
+						<p:inputText maxlength="64" id="chatname" value="" />
+						<p:commandButton id="saveChatName" action="#"
+								value="Chatname ändern" icon="ui-icon-disk" update="@form" />
 					</p:panelGrid>
 					
 				</p:panelGrid>
@@ -39,7 +41,7 @@
 					
 				<p:panelGrid id="borderUserGrid" columns="1">
 					<f:facet name="header">
-                    	<h:outputText value="User"/>
+                    	<h:outputText value="User anpassen"/>
                 	</f:facet>
                 	
 					<p:panelGrid columns="3" styleClass="noborderpanelgrid">
@@ -51,7 +53,14 @@
 							<f:selectItems value="" var="user"
 								itemLabel="" itemValue="" />
 						</p:selectOneMenu>
+						<p:commandButton id="deleteChatUser" action="#"
+								value="User entfernen" icon="ui-icon-disk" update="@form" />
 						
+						
+						<p:outputLabel for="addUser" value="Username" />
+						<p:inputText maxlength="64" id="addUser" value="" />
+						<p:commandButton id="addChatUser" action="#"
+								value="User hinzufügen" icon="ui-icon-disk" update="@form" />
 					</p:panelGrid>
 					
 					
@@ -61,7 +70,7 @@
 					
 				<p:panelGrid id="borderAdminGrid" columns="1">
 					<f:facet name="header">
-                    	<h:outputText value="Admin"/>
+                    	<h:outputText value="Adminrechte anpassen"/>
                 	</f:facet>
 					
 					<p:panelGrid columns="3" styleClass="noborderpanelgrid">
@@ -73,6 +82,14 @@
 							<f:selectItems value="" var="admin"
 								itemLabel="" itemValue="" />
 						</p:selectOneMenu>
+						<p:commandButton id="deleteChatAdmin" action="#"
+								value="Adminrechte entfernen" icon="ui-icon-disk" update="@form" />
+								
+								
+						<p:outputLabel for="addAdmin" value="Admin" />
+						<p:inputText maxlength="64" id="addAdmin" value="" />
+						<p:commandButton id="addChatAdmin" action="#"
+								value="Admin hinzufügen" icon="ui-icon-disk" update="@form" />
 					</p:panelGrid>
 					
 					</p:panelGrid>

@@ -7,26 +7,23 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:param name="title" value="Messenger - User hinzufügen" />
+	<ui:param name="title" value="Messenger - Chatliste" />
 
 	<ui:define name="content">
 		<h2>
-			<h:outputText value="User hinzufügen" />
+			<h:outputText value="Gruppenchat hinzufügen" />
 		</h2>
 		
 		<h:form id="form">
 		<p:messages id="errorMessages" style="color:red;margin:8px;" />
 			<p:panelGrid id="borderGrid" columns="1">
 			   	<f:facet name="header">
-                    <h:outputText value="neuer User"/>
+                    <h:outputText value="neuer Chat"/>
                 </f:facet>
-				<p:panelGrid id="userGrid" columns="2" styleClass="noborderpanelgrid">
-					<p:outputLabel for="userName" value="Username" />
-					<p:inputText required="true" maxlength="64" id="userName"
-						value="#{addUserBean.username}" />
-					<p:outputLabel for="password" value="Passwort" />
-					<p:inputText required="true" maxlength="64" id="password"
-						value="#{addUserBean.password}" />
+				<p:panelGrid id="fehlerGrid" columns="2" styleClass="noborderpanelgrid">
+					<p:outputLabel for="chatname" value="Chatname" />
+					<p:inputText required="true" maxlength="64" id="chatname"
+						value="" />
 					
 					<p></p>
 					<h:outputText id="display" />
@@ -34,7 +31,7 @@
 					<p></p>
 					<p:panelGrid colums="2">
 					
-						<p:commandButton id="save" action="#{addUserBean.save}"
+						<p:commandButton id="save" action="#"
 							value="Speichern" icon="ui-icon-disk" update="@form" />
 			
 						<p:button id="cancel" 

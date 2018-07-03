@@ -15,18 +15,39 @@
      <navigation-rule>
 	   <from-view-id>/chatList.xhtml</from-view-id>
 	   <navigation-case>
-	       <from-outcome>add</from-outcome>
+	       <from-outcome>showContact</from-outcome>
+	       <to-view-id>/contactList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+	       <from-outcome>addChat</from-outcome>
 	       <to-view-id>/addChat.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-	       <from-outcome>showContact</from-outcome>
-	       <to-view-id>/contactList.xhtml</to-view-id>
+	       <from-outcome>addGroupChat</from-outcome>
+	       <to-view-id>/addGroupChat.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 	   <from-view-id>/addChat.xhtml</from-view-id>
+	   <navigation-case>
+	       <from-outcome>cancel</from-outcome>
+	       <to-view-id>/chatList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	   <from-view-id>/addGroupChat.xhtml</from-view-id>
+	   <navigation-case>
+	       <from-outcome>cancel</from-outcome>
+	       <to-view-id>/chatList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+	   <from-view-id>/editChat.xhtml</from-view-id>
 	   <navigation-case>
 	       <from-outcome>cancel</from-outcome>
 	       <to-view-id>/chatList.xhtml</to-view-id>
@@ -53,9 +74,14 @@
 	       <to-view-id>/contactList.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+	       <from-outcome>success</from-outcome>
+	       <to-view-id>/contactList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-	   <from-view-id>/showChat.xhtml</from-view-id>
+	   <from-view-id>/showChatMessages.xhtml</from-view-id>
 	   <navigation-case>
 	       <from-outcome>back</from-outcome>
 	       <to-view-id>/chatList.xhtml</to-view-id>
@@ -94,18 +120,10 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-	   <from-view-id>/chatList.xhtml</from-view-id>
+	<from-view-id>/showChat.xhtml</from-view-id>
 	   <navigation-case>
-	       <from-outcome>success</from-outcome>
-	       <to-view-id>/showChat.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-	<from-view-id>/addContact.xhtml</from-view-id>
-	   <navigation-case>
-	       <from-outcome>success</from-outcome>
-	       <to-view-id>/contactList.xhtml</to-view-id>
+	       <from-outcome>cancel</from-outcome>
+	       <to-view-id>/chatList.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

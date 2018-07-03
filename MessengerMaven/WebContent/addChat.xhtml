@@ -20,19 +20,10 @@
 			   	<f:facet name="header">
                     <h:outputText value="neuer Chat"/>
                 </f:facet>
-				<p:panelGrid id="fehlerGrid" columns="2" styleClass="noborderpanelgrid">
-					<p:outputLabel for="chatname" value="Chatname" />
-					<p:inputText required="true" maxlength="64" id="chatname"
-						value="#{addFehlerBean.fehler.bezeichnung}" />
-					
-					<p:outputLabel for="admin" value="Admin" />
-					<p:selectOneMenu id="admin"
-						value="#{addFehlerBean.fehler.bearbeiter}"
-						converter="#{nutzerListConverter}" style="width:150px">
-						<f:selectItem itemLabel="Kein Bearbeiter" itemValue="" />
-						<f:selectItems value="#{addFehlerBean.nutzerList}" var="nutzer"
-							itemLabel="#{nutzer.name}" itemValue="#{nutzer}" />
-					</p:selectOneMenu>
+				<p:panelGrid id="chatAddGrid" columns="2" styleClass="noborderpanelgrid">
+					<p:outputLabel for="username" value="Username" />
+					<p:inputText required="true" maxlength="64" id="username"
+						value="" />
 					
 					<p></p>
 					<h:outputText id="display" />
@@ -40,7 +31,7 @@
 					<p></p>
 					<p:panelGrid colums="2">
 					
-						<p:commandButton id="save" action="#{addFehlerBean.speichern}"
+						<p:commandButton id="save" action="#"
 							value="Speichern" icon="ui-icon-disk" update="@form" />
 			
 						<p:button id="cancel" 
